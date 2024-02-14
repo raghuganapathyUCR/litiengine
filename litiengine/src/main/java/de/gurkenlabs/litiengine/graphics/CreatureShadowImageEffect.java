@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 public class CreatureShadowImageEffect extends ImageEffect {
   private static final Color DEFAULT_SHADOW_COLOR = new Color(124, 164, 174, 120);

@@ -23,6 +23,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.Nullable;
 
 @XmlRootElement(name = "emitter")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -101,7 +102,7 @@ public class EmitterData implements Serializable, Resource {
   @XmlElement(name = "color")
   private List<String> colors;
 
-  @XmlTransient
+  @Nullable @XmlTransient
   private List<Color> decodedColors;
 
   @XmlElement
@@ -149,7 +150,7 @@ public class EmitterData implements Serializable, Resource {
   @XmlAttribute
   private int maxParticles;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
 
   @XmlElement
@@ -180,7 +181,7 @@ public class EmitterData implements Serializable, Resource {
   @XmlAttribute
   private int spawnRate;
 
-  @XmlElement
+  @Nullable @XmlElement
   private String spritesheet;
 
   @XmlAttribute
@@ -378,14 +379,14 @@ public class EmitterData implements Serializable, Resource {
     this.maxParticles = maxParticles;
   }
 
-  @XmlTransient
+  @Nullable @XmlTransient
   @Override
   public String getName() {
     return this.name;
   }
 
   @Override
-  public void setName(final String name) {
+  public void setName(@Nullable final String name) {
     this.name = name;
   }
 
@@ -488,7 +489,7 @@ public class EmitterData implements Serializable, Resource {
     this.spawnRate = spawnRate;
   }
 
-  @XmlTransient
+  @Nullable @XmlTransient
   public String getSpritesheet() {
     return this.spritesheet;
   }

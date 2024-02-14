@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.annotation.Nullable;
 
 public class TextFieldComponent extends ImageComponent {
 
@@ -21,9 +22,9 @@ public class TextFieldComponent extends ImageComponent {
   private final List<Consumer<String>> changeConfirmedConsumers;
   private boolean cursorVisible;
   private int flickerDelay = 300;
-  private String format;
+  @Nullable private String format;
   private String cursor = "_";
-  private String fullText;
+  @Nullable private String fullText;
   private long lastToggled;
   private int maxLength = 0;
 
@@ -52,7 +53,7 @@ public class TextFieldComponent extends ImageComponent {
     setAutomaticLineBreaks(true);
   }
 
-  public String getFormat() {
+  @Nullable public String getFormat() {
     return format;
   }
 
@@ -82,7 +83,7 @@ public class TextFieldComponent extends ImageComponent {
   }
 
   @Override
-  public void setText(final String text) {
+  public void setText(@Nullable final String text) {
     this.fullText = text;
   }
 

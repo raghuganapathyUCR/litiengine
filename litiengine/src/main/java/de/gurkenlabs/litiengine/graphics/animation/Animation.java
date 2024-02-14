@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 /**
  * The {@code Animation} class keeps track of the current keyframe which is used to animate a visual element. It
@@ -27,11 +28,11 @@ public class Animation implements IUpdateable, ILaunchable {
 
   private final List<KeyFrame> keyframes;
   private final String name;
-  private Spritesheet spritesheet;
+  @Nullable private Spritesheet spritesheet;
 
-  private KeyFrame currentFrame;
+  @Nullable private KeyFrame currentFrame;
   private long lastFrameUpdate;
-  private KeyFrame firstFrame;
+  @Nullable private KeyFrame firstFrame;
   private int frameDuration = DEFAULT_FRAME_DURATION;
 
   private boolean loop;
@@ -71,7 +72,7 @@ public class Animation implements IUpdateable, ILaunchable {
    *          The duration of each keyframe.
    */
   public Animation(
-      final Spritesheet spritesheet,
+      @Nullable final Spritesheet spritesheet,
       final boolean loop,
       final boolean randomizeStart,
       final int... keyFrameDurations) {
@@ -356,7 +357,7 @@ public class Animation implements IUpdateable, ILaunchable {
     this.lastFrameUpdate = Game.loop().getTicks();
   }
 
-  public KeyFrame getCurrentKeyFrame() {
+  @Nullable public KeyFrame getCurrentKeyFrame() {
     return this.currentFrame;
   }
 

@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.util.Imaging;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 public class OverlayPixelsImageEffect extends ImageEffect {
   private final Color color;

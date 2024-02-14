@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.annotation.Nullable;
 
 /**
  * A standard implementation for emitters that provide a particle effect.
@@ -52,7 +53,7 @@ public class Emitter extends Entity implements IUpdateable, ITimeToLive, IRender
   private long activationTick;
   private long aliveTime;
   private long lastSpawn;
-  private Point2D origin;
+  @Nullable private Point2D origin;
 
   public Emitter() {
     this.finishedListeners = ConcurrentHashMap.newKeySet();
@@ -191,7 +192,7 @@ public class Emitter extends Entity implements IUpdateable, ITimeToLive, IRender
         getY() + data().getOriginValign().getValue(getHeight()));
   }
 
-  public IRenderable getRenderable(RenderType type) {
+  @Nullable public IRenderable getRenderable(RenderType type) {
     if (type == RenderType.NONE) {
       return null;
     }
@@ -265,7 +266,7 @@ public class Emitter extends Entity implements IUpdateable, ITimeToLive, IRender
     this.renderParticles(g, RenderType.NONE);
   }
 
-  public void setEmitterData(final EmitterData emitterData) {
+  public void setEmitterData(@Nullable final EmitterData emitterData) {
     if (emitterData == null) {
       return;
     }
@@ -353,7 +354,7 @@ public class Emitter extends Entity implements IUpdateable, ITimeToLive, IRender
    *
    * @return the particle
    */
-  protected Particle createNewParticle() {
+  @Nullable protected Particle createNewParticle() {
 
     float width = (float) data().getParticleWidth().get();
     float height = (float) data().getParticleHeight().get();

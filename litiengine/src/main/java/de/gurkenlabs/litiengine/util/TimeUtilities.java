@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.util;
 
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
 
 public final class TimeUtilities {
   public enum TimerFormat {
@@ -17,13 +18,13 @@ public final class TimeUtilities {
     HH_MM_SS_000("%02d:%02d:%02d.%03d"),
     HH_MM_SS_0("%02d:%02d:%02d.%01d");
 
-    private final String formatString;
+    @Nullable private final String formatString;
 
-    TimerFormat(String formatString) {
+    TimerFormat(@Nullable String formatString) {
       this.formatString = formatString;
     }
 
-    public String getFormatString() {
+    @Nullable public String getFormatString() {
       return formatString;
     }
   }

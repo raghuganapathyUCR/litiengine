@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.IntConsumer;
+import javax.annotation.Nullable;
 
 /** The Class Menu. */
 public class Menu extends ImageComponentList {
@@ -28,7 +29,7 @@ public class Menu extends ImageComponentList {
       final double y,
       final double width,
       final double height,
-      final Spritesheet background,
+      @Nullable final Spritesheet background,
       final String... items) {
     super(x, y, width, height, items.length, 1, null, background);
     this.items = items;

@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.entities.IEntity;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.EventListener;
+import javax.annotation.Nullable;
 
 /**
  * The Interface ICamera defines methods that allow to determine where entities or tiles are rendered on the current

@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 public final class ArrayUtilities {
   public static final String DEFAULT_STRING_DELIMITER = ",";
@@ -194,7 +195,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(boolean[] arr) {
+  @Nullable public static String join(boolean[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -207,7 +208,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(boolean[] arr, String delimiter) {
+  @Nullable public static String join(boolean[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -218,7 +219,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(int[] arr) {
+  @Nullable public static String join(int[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -231,7 +232,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(int[] arr, String delimiter) {
+  @Nullable public static String join(int[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -242,7 +243,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(double[] arr) {
+  @Nullable public static String join(double[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -255,7 +256,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(double[] arr, String delimiter) {
+  @Nullable public static String join(double[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -266,7 +267,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(float[] arr) {
+  @Nullable public static String join(float[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -279,7 +280,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(float[] arr, String delimiter) {
+  @Nullable public static String join(float[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -290,11 +291,11 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(short[] arr) {
+  @Nullable public static String join(short[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
-  public static String join(short[] arr, String delimiter) {
+  @Nullable public static String join(short[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -305,7 +306,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(long[] arr) {
+  @Nullable public static String join(long[] arr) {
     return join(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -318,7 +319,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(long[] arr, String delimiter) {
+  @Nullable public static String join(long[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -329,7 +330,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(byte[] arr) {
+  @Nullable public static String join(byte[] arr) {
     return join(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -342,7 +343,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(byte[] arr, String delimiter) {
+  @Nullable public static String join(byte[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -353,7 +354,7 @@ public final class ArrayUtilities {
    *          The list that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(Collection<?> collection) {
+  @Nullable public static String join(Collection<?> collection) {
     return joinArray(collection.toArray(), DEFAULT_STRING_DELIMITER);
   }
 
@@ -366,7 +367,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(Collection<?> collection, String delimiter) {
+  @Nullable public static String join(Collection<?> collection, String delimiter) {
     return joinArray(collection.toArray(), delimiter);
   }
 
@@ -377,7 +378,7 @@ public final class ArrayUtilities {
    *          The array that provides the elements to be joined.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(Object[] arr) {
+  @Nullable public static String join(Object[] arr) {
     return joinArray(arr, DEFAULT_STRING_DELIMITER);
   }
 
@@ -390,7 +391,7 @@ public final class ArrayUtilities {
    *          The delimiter used to separate the elements with.
    * @return A string with all joined elements, separated by the delimiter.
    */
-  public static String join(Object[] arr, String delimiter) {
+  @Nullable public static String join(Object[] arr, String delimiter) {
     return joinArray(arr, delimiter);
   }
 
@@ -536,7 +537,7 @@ public final class ArrayUtilities {
 
   // general method for joining an array
   // encapsulated for type safety
-  private static String joinArray(Object arr, String separator) {
+  @Nullable private static String joinArray(Object arr, String separator) {
     if (arr == null) {
       return null;
     }

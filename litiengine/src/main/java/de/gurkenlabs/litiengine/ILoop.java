@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine;
 
 import java.util.concurrent.locks.Lock;
+import javax.annotation.Nullable;
 
 /**
  * The {@code ILoop} interface provide method for game loops that are publicly exposed.

@@ -2,6 +2,7 @@ package de.gurkenlabs.litiengine.entities.behavior;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import javax.annotation.Nullable;
 
 public class AStarNode {
   // diagonal length: 1 * Math.sqrt(2) ~ 1.4
@@ -13,7 +14,7 @@ public class AStarNode {
   private double hCost;
 
   private double penalty;
-  private AStarNode predecessor;
+  @Nullable private AStarNode predecessor;
   private boolean walkable;
 
   public AStarNode(
@@ -83,7 +84,7 @@ public class AStarNode {
     return this.penalty;
   }
 
-  public AStarNode getPredecessor() {
+  @Nullable public AStarNode getPredecessor() {
     return this.predecessor;
   }
 
@@ -103,7 +104,7 @@ public class AStarNode {
     this.penalty = penalty;
   }
 
-  public void setPredecessor(final AStarNode predecessor) {
+  public void setPredecessor(@Nullable final AStarNode predecessor) {
     this.predecessor = predecessor;
   }
 

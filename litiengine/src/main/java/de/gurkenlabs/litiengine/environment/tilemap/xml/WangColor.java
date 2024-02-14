@@ -5,18 +5,19 @@ import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.awt.*;
+import javax.annotation.Nullable;
 
 @XmlRootElement(name = "wangcolor")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WangColor implements ITerrain {
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
 
-  @XmlAttribute(name = "class")
+  @Nullable @XmlAttribute(name = "class")
   private String wangColorClass;
 
-  @XmlJavaTypeAdapter(ColorAdapter.class)
+  @Nullable @XmlJavaTypeAdapter(ColorAdapter.class)
   @XmlAttribute
   private Color color;
 
@@ -26,12 +27,12 @@ public class WangColor implements ITerrain {
   @XmlAttribute
   private double probability;
 
-  @Override
+  @Nullable @Override
   public String getName() {
     return this.name;
   }
 
-  @Override
+  @Nullable @Override
   public Color getColor() {
     return this.color;
   }

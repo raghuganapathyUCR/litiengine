@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 
 /**
  * The 2D Render Engine is used to render texts, shapes and entities at their location in the {@code Environment} and with respect to the

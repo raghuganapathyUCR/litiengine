@@ -5,6 +5,7 @@ import de.gurkenlabs.litiengine.Valign;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.annotation.Nullable;
 
 /**
  * This class contains globally used properties for all the {@link GuiComponent}s that might be added to the game.
@@ -14,14 +15,14 @@ public class GuiProperties {
   private static Appearance defaultAppearanceDisabled = new Appearance(new Color(136, 136, 136));
   private static Appearance defaultAppearanceHovered = new Appearance(new Color(200, 200, 200));
 
-  private static Font defaultFont;
+  @Nullable private static Font defaultFont;
   private static Align defaultTextAlign = Align.CENTER;
   private static Valign defaultTextValign = Valign.MIDDLE;
 
   private static boolean defaultTextAntialiasing = true;
 
   private static boolean defaultTextShadow = false;
-  private static Color defaultTextShadowColor;
+  @Nullable private static Color defaultTextShadowColor;
   private static float defaultTextShadowRadius = 2f;
   private static int defaultSpeechBubbleDisplayTime = 2000;
 
@@ -51,7 +52,7 @@ public class GuiProperties {
     defaultAppearanceHovered = app;
   }
 
-  public static Font getDefaultFont() {
+  @Nullable public static Font getDefaultFont() {
     return defaultFont;
   }
 
@@ -75,7 +76,7 @@ public class GuiProperties {
     defaultTextShadow = newDefault;
   }
 
-  public static Color getDefaultTextShadowColor() {
+  @Nullable public static Color getDefaultTextShadowColor() {
     return defaultTextShadowColor;
   }
 

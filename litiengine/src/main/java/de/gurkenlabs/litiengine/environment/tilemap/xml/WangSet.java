@@ -6,39 +6,40 @@ import de.gurkenlabs.litiengine.environment.tilemap.TerrainType;
 import jakarta.xml.bind.annotation.*;
 
 import java.util.List;
+import javax.annotation.Nullable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WangSet extends CustomPropertyProvider implements ITerrainSet {
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
 
-  @XmlAttribute(name = "class")
+  @Nullable @XmlAttribute(name = "class")
   private String wangSetClass;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private TerrainType type;
 
   @XmlAttribute
   private int tile; // think this is unused in Tiled but still serialized
 
-  @XmlElement(type = WangColor.class)
+  @Nullable @XmlElement(type = WangColor.class)
   private List<ITerrain> wangcolor;
 
-  @XmlElement(name = "wangtile")
+  @Nullable @XmlElement(name = "wangtile")
   private List<WangTile> wangtiles;
 
-  @Override
+  @Nullable @Override
   public String getName() {
     return this.name;
   }
 
-  @Override
+  @Nullable @Override
   public TerrainType getType() {
     return this.type;
   }
 
-  @Override
+  @Nullable @Override
   public List<ITerrain> getTerrains() {
     return this.wangcolor;
   }

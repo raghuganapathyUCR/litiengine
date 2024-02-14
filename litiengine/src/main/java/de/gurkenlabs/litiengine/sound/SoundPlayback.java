@@ -16,6 +16,7 @@ import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import javax.annotation.Nullable;
 
 /**
  * The {@code SoundPlayback} class is a wrapper {@code SourceDataLine} on which a {@code Sound}
@@ -39,7 +40,7 @@ public abstract class SoundPlayback implements Runnable {
   private final VolumeControl masterVolume;
   private final AtomicInteger miscVolume = new AtomicInteger(0x3f800000); // floatToIntBits(1f)
 
-  SoundPlayback(AudioFormat format) throws LineUnavailableException {
+  SoundPlayback(@Nullable AudioFormat format) throws LineUnavailableException {
     // acquire resources in the constructor so that they can be used before the task is started
     this.line = AudioSystem.getSourceDataLine(format);
     this.line.open();

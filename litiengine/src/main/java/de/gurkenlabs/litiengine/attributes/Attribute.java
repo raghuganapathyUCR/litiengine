@@ -3,6 +3,7 @@ package de.gurkenlabs.litiengine.attributes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * An attribute is a numerical representation of a property that can be adjusted using {@link AttributeModifier}s.
@@ -152,7 +153,7 @@ public class Attribute<T extends Number> {
     return currentValue;
   }
 
-  @Override
+  @Nullable @Override
   public String toString() {
     return this.get() == null ? null : this.get().toString();
   }

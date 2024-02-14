@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
+import javax.annotation.Nullable;
 
 public class MovementController<T extends IMobileEntity> implements IMovementController {
 
@@ -123,7 +124,7 @@ public class MovementController<T extends IMobileEntity> implements IMovementCon
     this.moveEntity(dxTemp, dyTemp);
   }
 
-  @Override
+  @Nullable @Override
   public Force getForce(String identifier) {
     if (identifier == null || identifier.isEmpty()) {
       return null;

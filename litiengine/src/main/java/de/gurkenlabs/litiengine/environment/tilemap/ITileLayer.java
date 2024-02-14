@@ -2,6 +2,7 @@ package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.awt.geom.Point2D;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface ITileLayer extends ILayer {
 
@@ -12,7 +13,7 @@ public interface ITileLayer extends ILayer {
    *          the location
    * @return the tile by location
    */
-  ITile getTileByLocation(Point2D location);
+  @Nullable ITile getTileByLocation(Point2D location);
 
   /**
    * Gets the tile at the specified map grid location.
@@ -30,7 +31,7 @@ public interface ITileLayer extends ILayer {
    * 
    * @see MapUtilities#getTile(Point2D)
    */
-  ITile getTile(int x, int y);
+  @Nullable ITile getTile(int x, int y);
 
   /**
    * Sets the id of the tile at the specified map grid location.
@@ -65,5 +66,5 @@ public interface ITileLayer extends ILayer {
    *
    * @return the tiles
    */
-  List<ITile> getTiles();
+  @Nullable List<ITile> getTiles();
 }

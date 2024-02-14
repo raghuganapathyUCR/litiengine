@@ -12,6 +12,7 @@ import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface IEntity {
   void onMessage(EntityMessageListener listener);
@@ -76,7 +77,7 @@ public interface IEntity {
    * @return The entities animation controller or null if none was registered.
    * @see RenderEngine#renderEntity(java.awt.Graphics2D, IEntity)
    */
-  IEntityAnimationController<?> animations();
+  @Nullable IEntityAnimationController<?> animations();
 
   boolean isVisible();
 
@@ -125,7 +126,7 @@ public interface IEntity {
    * @see IEntity#perform(String)
    * @see IEntity#actions()
    */
-  EntityAction register(String name, Runnable action);
+  @Nullable EntityAction register(String name, Runnable action);
 
   void detachControllers();
 
@@ -146,9 +147,9 @@ public interface IEntity {
    *
    * @return The name of this entity.
    */
-  String getName();
+  @Nullable String getName();
 
-  RenderType getRenderType();
+  @Nullable RenderType getRenderType();
 
   /**
    * Determines whether this entity is being rendered with the layer it's originating from. This ignores the specified
@@ -172,7 +173,7 @@ public interface IEntity {
 
   double getY();
 
-  String sendMessage(Object sender, String message);
+  @Nullable String sendMessage(Object sender, String message);
 
   void setHeight(double height);
 
@@ -202,9 +203,9 @@ public interface IEntity {
    */
   void setMapId(int mapId);
 
-  void setName(String name);
+  void setName(@Nullable String name);
 
-  void setRenderType(RenderType renderType);
+  void setRenderType(@Nullable RenderType renderType);
 
   void setRenderWithLayer(boolean renderWithLayer);
 

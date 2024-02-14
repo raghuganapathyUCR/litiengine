@@ -4,6 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
+import javax.annotation.Nullable;
 
 public class PolygonParticle extends ShapeParticle {
   private int sides;

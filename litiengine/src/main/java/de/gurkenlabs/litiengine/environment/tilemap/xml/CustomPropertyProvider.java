@@ -15,6 +15,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import de.gurkenlabs.litiengine.environment.tilemap.ICustomProperty;
 import de.gurkenlabs.litiengine.environment.tilemap.ICustomPropertyProvider;
+import javax.annotation.Nullable;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -47,7 +48,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     return this.getProperties().containsKey(propertyName);
   }
 
-  @Override
+  @Nullable @Override
   public ICustomProperty getProperty(String propertyName) {
     return this.getProperties().get(propertyName);
   }
@@ -68,8 +69,8 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     return property.getAsString();
   }
 
-  @Override
-  public String getStringValue(String propertyName, String defaultValue) {
+  @Nullable @Override
+  public String getStringValue(String propertyName, @Nullable String defaultValue) {
     ICustomProperty property = this.getProperty(propertyName);
     if (property == null) {
       return defaultValue;
@@ -224,7 +225,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     return property.getAsDouble();
   }
 
-  @Override
+  @Nullable @Override
   public Color getColorValue(String propertyName) {
     ICustomProperty property = this.getProperty(propertyName);
     if (property == null) {
@@ -249,7 +250,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     return value;
   }
 
-  @Override
+  @Nullable @Override
   public <T extends Enum<T>> T getEnumValue(String propertyName, Class<T> enumType) {
     ICustomProperty property = this.getProperty(propertyName);
     if (property == null) {
@@ -274,7 +275,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     return value;
   }
 
-  @Override
+  @Nullable @Override
   public URL getFileValue(String propertyName) {
     ICustomProperty property = this.getProperty(propertyName);
     if (property == null) {
@@ -321,7 +322,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
   }
 
   @Override
-  public void setValue(String propertyName, String value) {
+  public void setValue(String propertyName, @Nullable String value) {
     if (value != null) {
       ICustomProperty property = createPropertyIfAbsent(propertyName);
       property.setType(CustomPropertyType.STRING);
@@ -405,7 +406,7 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
   }
 
   @Override
-  public void setProperties(Map<String, ICustomProperty> props) {
+  public void setProperties(@Nullable Map<String, ICustomProperty> props) {
     this.getProperties().clear();
     if (props != null) {
       this.getProperties().putAll(props);
@@ -424,12 +425,12 @@ public class CustomPropertyProvider implements ICustomPropertyProvider {
     }
   }
 
-  void finish(URL location) throws TmxException {
+  void finish(@Nullable URL location) throws TmxException {
     // blank base case
   }
 
   @Override
-  public List<String> getCommaSeparatedStringValues(String propertyName, String defaultValue) {
+  public List<String> getCommaSeparatedStringValues(String propertyName, @Nullable String defaultValue) {
     List<String> values = new ArrayList<>();
     String valuesStr = this.getStringValue(propertyName, defaultValue);
     if (valuesStr != null && !valuesStr.isEmpty()) {

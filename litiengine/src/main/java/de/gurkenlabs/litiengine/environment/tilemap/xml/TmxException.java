@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.environment.tilemap.xml;
 
 import java.io.IOException;
+import javax.annotation.Nullable;
 
 /**
  * Thrown to indicate that something has gone wrong with the processing of a TMX file.
@@ -15,7 +16,7 @@ public class TmxException extends IOException {
     super(message);
   }
 
-  public TmxException(String message, Throwable cause) {
+  public TmxException(@Nullable String message, Throwable cause) {
     super(message, cause);
   }
 

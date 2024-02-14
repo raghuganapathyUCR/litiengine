@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.configuration;
 
 import java.util.Locale;
+import javax.annotation.Nullable;
 
 /**
  * The client configuration contains client specific configuration elements.
@@ -8,9 +9,9 @@ import java.util.Locale;
 @ConfigurationGroupInfo(prefix = "cl_")
 public class ClientConfiguration extends ConfigurationGroup {
 
-  private String country;
+  @Nullable private String country;
 
-  private String language;
+  @Nullable private String language;
 
   private int maxFps;
 
@@ -31,11 +32,11 @@ public class ClientConfiguration extends ConfigurationGroup {
     this.setCountry(Locale.getDefault().getCountry());
   }
 
-  public String getCountry() {
+  @Nullable public String getCountry() {
     return this.country;
   }
 
-  public String getLanguage() {
+  @Nullable public String getLanguage() {
     return this.language;
   }
 

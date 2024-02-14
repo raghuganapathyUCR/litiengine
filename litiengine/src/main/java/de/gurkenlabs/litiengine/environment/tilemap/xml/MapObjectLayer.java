@@ -17,6 +17,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.environment.tilemap.IMapObject;
 import de.gurkenlabs.litiengine.environment.tilemap.IMapObjectLayer;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.annotation.Nullable;
 
 public class MapObjectLayer extends Layer implements IMapObjectLayer {
   public static final String DEFAULT_MAPOBJECTLAYER_NAME = "default";
@@ -24,7 +25,7 @@ public class MapObjectLayer extends Layer implements IMapObjectLayer {
   @XmlElement(name = "object")
   private ArrayList<MapObject> objects = new ArrayList<>();
 
-  @XmlAttribute(name = "color")
+  @Nullable @XmlAttribute(name = "color")
   @XmlJavaTypeAdapter(ColorAdapter.class)
   private Color color;
 
@@ -83,7 +84,7 @@ public class MapObjectLayer extends Layer implements IMapObjectLayer {
     }
   }
 
-  @Override
+  @Nullable @Override
   public String toString() {
     return this.getName();
   }
@@ -102,7 +103,7 @@ public class MapObjectLayer extends Layer implements IMapObjectLayer {
     }
   }
 
-  @Override
+  @Nullable @Override
   public Color getColor() {
     return this.color;
   }
@@ -144,7 +145,7 @@ public class MapObjectLayer extends Layer implements IMapObjectLayer {
   }
 
   @Override
-  void finish(URL location) throws TmxException {
+  void finish(@Nullable URL location) throws TmxException {
     super.finish(location);
     for (MapObject object : this.objects) {
       object.finish(location);

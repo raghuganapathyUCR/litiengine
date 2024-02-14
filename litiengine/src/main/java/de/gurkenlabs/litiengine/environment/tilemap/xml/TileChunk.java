@@ -4,6 +4,7 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlValue;
+import javax.annotation.Nullable;
 
 /**
  * This class represents a chunk of tiles in an infinite map.
@@ -22,7 +23,7 @@ public class TileChunk implements Comparable<TileChunk> {
   @XmlAttribute
   private int height;
 
-  @XmlValue
+  @Nullable @XmlValue
   private String value;
 
   @XmlTransient

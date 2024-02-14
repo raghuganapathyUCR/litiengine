@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.annotation.Nullable;
 
 @CombatInfo
 @CollisionInfo(collision = true)
@@ -38,7 +39,7 @@ public class CombatEntity extends CollisionEntity implements ICombatEntity {
   @TmxProperty(name = MapObjectProperty.COMBAT_HITPOINTS)
   private int initialHitpoints;
 
-  private ICombatEntity target;
+  @Nullable private ICombatEntity target;
   private long lastHit;
 
   /** Instantiates a new {@code CombatEntity}. */
@@ -137,7 +138,7 @@ public class CombatEntity extends CollisionEntity implements ICombatEntity {
     return new Ellipse2D.Double(this.getX(), this.getY(), this.getWidth(), this.getHeight());
   }
 
-  @Override
+  @Nullable @Override
   public ICombatEntity getTarget() {
     return this.target;
   }
@@ -170,7 +171,7 @@ public class CombatEntity extends CollisionEntity implements ICombatEntity {
   }
 
   @Override
-  public void hit(final int damage, final Ability ability) {
+  public void hit(final int damage, @Nullable final Ability ability) {
     if (this.isDead()) {
       return;
     }

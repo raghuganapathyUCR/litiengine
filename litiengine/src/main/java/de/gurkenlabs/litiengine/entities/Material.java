@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.environment.tilemap.xml.CustomPropertyProvider;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.Nullable;
 
 public class Material extends CustomPropertyProvider {
   private static final Map<String, Material> materials = new ConcurrentHashMap<>();

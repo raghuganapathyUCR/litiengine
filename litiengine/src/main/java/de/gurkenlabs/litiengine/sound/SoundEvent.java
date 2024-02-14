@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.sound;
 
 import java.util.EventObject;
+import javax.annotation.Nullable;
 
 /**
  * This implementation is used for all events that need to pass a {@code Sound} object to their listeners.
@@ -11,9 +12,9 @@ import java.util.EventObject;
 public class SoundEvent extends EventObject {
   private static final long serialVersionUID = -2070316328855430839L;
 
-  private final transient Sound sound;
+  @Nullable private final transient Sound sound;
 
-  SoundEvent(Object source, Sound sound) {
+  SoundEvent(Object source, @Nullable Sound sound) {
     super(source);
     this.sound = sound;
   }
@@ -23,7 +24,7 @@ public class SoundEvent extends EventObject {
    *
    * @return The sound object.
    */
-  public Sound getSound() {
+  @Nullable public Sound getSound() {
     return this.sound;
   }
 

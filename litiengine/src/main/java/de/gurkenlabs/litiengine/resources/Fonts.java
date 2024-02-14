@@ -7,13 +7,14 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 public final class Fonts extends ResourcesContainer<Font> {
   private static final Logger log = Logger.getLogger(Fonts.class.getName());
 
   Fonts() {}
 
-  public Font get(String name, float size) {
+  @Nullable public Font get(String name, float size) {
     Font font = this.get(name);
     if (font == null) {
       return null;
@@ -22,7 +23,7 @@ public final class Fonts extends ResourcesContainer<Font> {
     return font.deriveFont(size);
   }
 
-  public Font get(String name, int style) {
+  @Nullable public Font get(String name, int style) {
     Font font = this.get(name);
     if (font == null) {
       return null;
@@ -31,7 +32,7 @@ public final class Fonts extends ResourcesContainer<Font> {
     return font.deriveFont(style);
   }
 
-  public Font get(String name, int style, float size) {
+  @Nullable public Font get(String name, int style, float size) {
     Font font = this.get(name);
     if (font == null) {
       return null;
@@ -51,8 +52,8 @@ public final class Fonts extends ResourcesContainer<Font> {
    * @see Font#createFont(int, java.io.File)
    * @see Font#getFont(String)
    */
-  @Override
-  protected Font load(URL resourceName) {
+  @Nullable @Override
+  protected Font load(@Nullable URL resourceName) {
     try (final InputStream fontStream = Resources.get(resourceName)) {
       if (fontStream == null) {
         log.log(Level.SEVERE, "font {0} could not be loaded", resourceName);

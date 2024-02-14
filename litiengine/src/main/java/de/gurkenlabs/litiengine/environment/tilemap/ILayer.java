@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.graphics.RenderType;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import javax.annotation.Nullable;
 
 public interface ILayer extends ICustomPropertyProvider {
 
@@ -14,7 +15,7 @@ public interface ILayer extends ICustomPropertyProvider {
    *
    * @return the name
    */
-  String getName();
+  @Nullable String getName();
 
   void setName(String name);
 
@@ -67,7 +68,7 @@ public interface ILayer extends ICustomPropertyProvider {
    *
    * @return A color that is used to tint the visible contents of this layer.
    */
-  Color getTintColor();
+  @Nullable Color getTintColor();
 
   /**
    * Sets the tint color of this layer.
@@ -94,7 +95,7 @@ public interface ILayer extends ICustomPropertyProvider {
 
   void setVisible(boolean visible);
 
-  RenderType getRenderType();
+  @Nullable RenderType getRenderType();
 
   void setRenderType(RenderType renderType);
 

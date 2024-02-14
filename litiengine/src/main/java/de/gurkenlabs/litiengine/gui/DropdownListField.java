@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.IntConsumer;
+import javax.annotation.Nullable;
 
 public class DropdownListField extends GuiComponent {
   public static final FontIcon ARROW_DOWN = new FontIcon(ICON_FONT, "\uE804");
@@ -15,13 +16,13 @@ public class DropdownListField extends GuiComponent {
   private final List<IntConsumer> changeConsumer;
   private final Object[] content;
 
-  private ListField contentList;
+  @Nullable private ListField contentList;
   /** The drop down button. */
-  private ImageComponent dropDownButton;
+  @Nullable private ImageComponent dropDownButton;
 
-  private ImageComponent chosenElementComponent;
-  private Spritesheet entrySprite;
-  private Spritesheet buttonSprite;
+  @Nullable private ImageComponent chosenElementComponent;
+  @Nullable private Spritesheet entrySprite;
+  @Nullable private Spritesheet buttonSprite;
   private boolean isDroppedDown;
 
   private final int numberOfShownElements;
@@ -39,7 +40,7 @@ public class DropdownListField extends GuiComponent {
     this.changeConsumer = new CopyOnWriteArrayList<>();
   }
 
-  public Spritesheet getButtonSprite() {
+  @Nullable public Spritesheet getButtonSprite() {
     return this.buttonSprite;
   }
 
@@ -59,11 +60,11 @@ public class DropdownListField extends GuiComponent {
     return this.contentList;
   }
 
-  public ImageComponent getDropDownButton() {
+  @Nullable public ImageComponent getDropDownButton() {
     return this.dropDownButton;
   }
 
-  public Spritesheet getEntrySprite() {
+  @Nullable public Spritesheet getEntrySprite() {
     return this.entrySprite;
   }
 
@@ -79,7 +80,7 @@ public class DropdownListField extends GuiComponent {
     return this.getContentList().getSelectionRow();
   }
 
-  public Object getSelectedObject() {
+  @Nullable public Object getSelectedObject() {
     if (this.getContentArray().length == 0) {
       return null;
     }

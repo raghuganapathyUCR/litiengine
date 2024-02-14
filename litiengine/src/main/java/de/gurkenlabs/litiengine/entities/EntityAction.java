@@ -1,17 +1,18 @@
 package de.gurkenlabs.litiengine.entities;
+import javax.annotation.Nullable;
 
 public class EntityAction {
   private final String name;
   private final Runnable action;
 
-  private String description;
+  @Nullable private String description;
 
   EntityAction(String name, Runnable action) {
     this.name = name;
     this.action = action;
   }
 
-  public String getDescription() {
+  @Nullable public String getDescription() {
     return this.description;
   }
 

@@ -11,10 +11,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 public abstract class ColorLayer implements IRenderable {
   private final Environment environment;
-  private final BufferedImage layer;
+  @Nullable private final BufferedImage layer;
 
   private Color color;
 

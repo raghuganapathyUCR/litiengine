@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.function.IntConsumer;
+import javax.annotation.Nullable;
 
 @SuppressWarnings("serial")
 public class RenderComponent extends Canvas {
@@ -32,7 +33,7 @@ public class RenderComponent extends Canvas {
   private final transient List<IntConsumer> fpsChangedConsumer;
   private final transient List<Consumer<Graphics2D>> renderedConsumer;
 
-  private transient BufferStrategy currentBufferStrategy;
+  @Nullable private transient BufferStrategy currentBufferStrategy;
 
   private float currentAlpha;
 

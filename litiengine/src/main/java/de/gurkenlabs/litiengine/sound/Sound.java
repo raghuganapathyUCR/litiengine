@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.annotation.Nullable;
 
 /**
  * This class implements all required functionality to load sounds from the file system and provide a stream that can
@@ -14,13 +15,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public final class Sound {
 
-  private AudioFormat format;
+  @Nullable private AudioFormat format;
 
-  private final String name;
+  @Nullable private final String name;
 
-  private AudioInputStream stream;
+  @Nullable private AudioInputStream stream;
 
-  private byte[] streamData;
+  @Nullable private byte[] streamData;
 
   private byte[] data;
 
@@ -41,7 +42,7 @@ public final class Sound {
    * @throws UnsupportedAudioFileException
    *           If the audio format is not supported
    */
-  public Sound(InputStream is, String name) throws IOException, UnsupportedAudioFileException {
+  public Sound(InputStream is, @Nullable String name) throws IOException, UnsupportedAudioFileException {
     this.name = name;
 
     this.data = StreamUtilities.getBytes(is);
@@ -63,7 +64,7 @@ public final class Sound {
    *
    * @return The audio format of this instance.
    */
-  public AudioFormat getFormat() {
+  @Nullable public AudioFormat getFormat() {
     return this.format;
   }
 
@@ -72,7 +73,7 @@ public final class Sound {
    *
    * @return The name of this sound.
    */
-  public String getName() {
+  @Nullable public String getName() {
     return this.name;
   }
 
@@ -102,7 +103,7 @@ public final class Sound {
     return new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, rate, 16, ch, ch * 2, rate, false);
   }
 
-  @Override
+  @Nullable @Override
   public String toString() {
     return this.getName();
   }

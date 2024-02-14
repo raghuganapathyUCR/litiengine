@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import javax.annotation.Nullable;
 
 public interface IMapOrientation {
   /**

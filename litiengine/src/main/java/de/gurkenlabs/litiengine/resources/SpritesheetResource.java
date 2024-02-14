@@ -12,6 +12,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.util.ArrayUtilities;
 import de.gurkenlabs.litiengine.util.io.Codec;
+import javax.annotation.Nullable;
 
 @XmlRootElement(name = "sprite")
 public class SpritesheetResource extends NamedResource implements Serializable {
@@ -23,13 +24,13 @@ public class SpritesheetResource extends NamedResource implements Serializable {
   @XmlAttribute(name = "height")
   private int height;
 
-  @XmlAttribute(name = "imageformat")
+  @Nullable @XmlAttribute(name = "imageformat")
   private ImageFormat imageformat;
 
-  @XmlElement(required = false)
+  @Nullable @XmlElement(required = false)
   private String image;
 
-  @XmlElement(required = false)
+  @Nullable @XmlElement(required = false)
   private String keyframes;
 
   public SpritesheetResource() {
@@ -60,7 +61,7 @@ public class SpritesheetResource extends NamedResource implements Serializable {
     return this.height;
   }
 
-  @XmlTransient
+  @Nullable @XmlTransient
   public String getImage() {
     return this.image;
   }
@@ -70,7 +71,7 @@ public class SpritesheetResource extends NamedResource implements Serializable {
     return this.width;
   }
 
-  @XmlTransient
+  @Nullable @XmlTransient
   public ImageFormat getImageFormat() {
     return this.imageformat;
   }
@@ -88,7 +89,7 @@ public class SpritesheetResource extends NamedResource implements Serializable {
     this.height = h;
   }
 
-  public void setImage(final String image) {
+  public void setImage(@Nullable final String image) {
     this.image = image;
   }
 

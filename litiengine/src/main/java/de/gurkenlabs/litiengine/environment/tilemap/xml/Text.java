@@ -13,46 +13,47 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.environment.tilemap.IMapObjectText;
+import javax.annotation.Nullable;
 
 public class Text implements IMapObjectText {
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String fontfamily;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer pixelsize;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer wrap;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(ColorAdapter.class)
   private Color color;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer bold;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer italic;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer underline;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer strikeout;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer kerning;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Align halign;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Valign valign;
 
-  @XmlValue
+  @Nullable @XmlValue
   private String text;
 
-  @Override
+  @Nullable @Override
   public String getText() {
     return this.text;
   }
@@ -113,12 +114,12 @@ public class Text implements IMapObjectText {
     return this.kerning == null || this.kerning != 0;
   }
 
-  @Override
+  @Nullable @Override
   public Align getAlign() {
     return this.halign;
   }
 
-  @Override
+  @Nullable @Override
   public Valign getValign() {
     return this.valign;
   }

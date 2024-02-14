@@ -18,25 +18,26 @@ import de.gurkenlabs.litiengine.environment.tilemap.IMapObjectLayer;
 import de.gurkenlabs.litiengine.environment.tilemap.IMapObjectText;
 import de.gurkenlabs.litiengine.environment.tilemap.IPolyShape;
 import de.gurkenlabs.litiengine.environment.tilemap.ITilesetEntry;
+import javax.annotation.Nullable;
 
 public class MapObject extends CustomPropertyProvider implements IMapObject {
   @XmlAttribute
   private int id;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer gid;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String type;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(value = DecimalFloatAdapter.class)
   private Float x;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(value = DecimalFloatAdapter.class)
   private Float y;
 
@@ -48,25 +49,25 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
   @XmlJavaTypeAdapter(value = DecimalFloatAdapter.class)
   private Float height = 0f;
 
-  @XmlTransient
+  @Nullable @XmlTransient
   private ITilesetEntry tile;
 
-  @XmlElement(name = "polyline")
+  @Nullable @XmlElement(name = "polyline")
   private PolyShape polyline;
 
-  @XmlElement(name = "polygon")
+  @Nullable @XmlElement(name = "polygon")
   private PolyShape polygon;
 
-  @XmlElement
+  @Nullable @XmlElement
   private String point;
 
-  @XmlElement
+  @Nullable @XmlElement
   private String ellipse;
 
-  @XmlElement
+  @Nullable @XmlElement
   private Text text;
 
-  private transient MapObjectLayer layer;
+  @Nullable private transient MapObjectLayer layer;
 
   /**
    * Instantiates a new {@code MapObject} instance.
@@ -170,7 +171,7 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
     return this.gid;
   }
 
-  @Override
+  @Nullable @Override
   public ITilesetEntry getTile() {
     return this.tile;
   }
@@ -190,7 +191,7 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
     return new Point2D.Double(this.getX(), this.getY());
   }
 
-  @Override
+  @Nullable @Override
   public String getName() {
     return this.name;
   }
@@ -200,22 +201,22 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
    *
    * @return the type
    */
-  @Override
+  @Nullable @Override
   public String getType() {
     return this.type;
   }
 
-  @Override
+  @Nullable @Override
   public IPolyShape getPolyline() {
     return this.polyline;
   }
 
-  @Override
+  @Nullable @Override
   public IPolyShape getPolygon() {
     return this.polygon;
   }
 
-  @Override
+  @Nullable @Override
   public Ellipse2D getEllipse() {
     if (!this.isEllipse()) {
       return null;
@@ -224,7 +225,7 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
     return new Ellipse2D.Double(this.getX(), this.getY(), this.getWidth(), this.getHeight());
   }
 
-  @Override
+  @Nullable @Override
   public IMapObjectText getText() {
     return this.text;
   }
@@ -249,7 +250,7 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
 
   @Override
   @XmlTransient
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     if (name != null && name.isEmpty()) {
       this.name = null;
       return;
@@ -260,7 +261,7 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
 
   @Override
   @XmlTransient
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 
@@ -411,14 +412,14 @@ public class MapObject extends CustomPropertyProvider implements IMapObject {
   }
 
   @Override
-  void finish(URL location) throws TmxException {
+  void finish(@Nullable URL location) throws TmxException {
     super.finish(location);
     if (this.gid != null) {
       this.tile = this.getLayer().getMap().getTilesetEntry(this.gid);
     }
   }
 
-  protected void setLayer(MapObjectLayer layer) {
+  protected void setLayer(@Nullable MapObjectLayer layer) {
     this.layer = layer;
   }
 

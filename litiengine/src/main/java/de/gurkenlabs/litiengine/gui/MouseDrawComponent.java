@@ -9,10 +9,11 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.SwingUtilities;
+import javax.annotation.Nullable;
 
 public class MouseDrawComponent extends ImageComponent {
   private double brushSize = 2;
-  private BufferedImage drawingSpace;
+  @Nullable private BufferedImage drawingSpace;
   private Color drawingColor = Color.WHITE;
 
   public MouseDrawComponent(
@@ -75,7 +76,7 @@ public class MouseDrawComponent extends ImageComponent {
     g.fillRect(0, 0, (int) this.getWidth(), (int) this.getHeight());
   }
 
-  public BufferedImage getDrawingSpace() {
+  @Nullable public BufferedImage getDrawingSpace() {
     return this.drawingSpace;
   }
 }

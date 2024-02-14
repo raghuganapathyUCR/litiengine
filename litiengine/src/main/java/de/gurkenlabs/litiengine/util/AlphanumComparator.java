@@ -30,6 +30,7 @@
 package de.gurkenlabs.litiengine.util;
 
 import java.util.Comparator;
+import javax.annotation.Nullable;
 
 /**
  * This is an updated version with enhancements made by Daniel Migowski, Andre Bogus, and David Koelle. Updated by David
@@ -75,7 +76,7 @@ public class AlphanumComparator implements Comparator<String> {
     return compareTo(s1, s2);
   }
 
-  public static int compareTo(String s1, String s2) {
+  public static int compareTo(@Nullable String s1, @Nullable String s2) {
     if ((s1 == null) || (s2 == null)) {
       return 0;
     }

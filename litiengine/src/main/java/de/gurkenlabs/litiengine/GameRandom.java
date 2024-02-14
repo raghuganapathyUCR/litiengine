@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * A random number generator instance that provides enhanced functionalities for the java default {@code Random} implementation.
@@ -92,7 +93,7 @@ public final class GameRandom extends java.util.Random {
    * @param array The array to choose from.
    * @return A pseudo-random element from the array or null if the array is empty.
    */
-  public <T> T choose(T[] array) {
+  @Nullable public <T> T choose(T[] array) {
     if (array == null || array.length == 0) {
       return null;
     }
@@ -167,7 +168,7 @@ public final class GameRandom extends java.util.Random {
    * @param coll The collection to choose from.
    * @return A pseudo-random element from the array or null if the collection is empty.
    */
-  public <T> T choose(Collection<T> coll) {
+  @Nullable public <T> T choose(Collection<T> coll) {
     if (coll == null || coll.isEmpty()) {
       return null;
     }
@@ -686,7 +687,7 @@ public final class GameRandom extends java.util.Random {
    * @param alphaVariance The float value between 0 and 1 defining how strong the new Color's Alpha will deviate from the original Color.
    * @return A pseudo-randomized variant of the original Color.
    */
-  public Color nextColor(Color originalColor, float colorVariance, float alphaVariance) {
+  @Nullable public Color nextColor(Color originalColor, float colorVariance, float alphaVariance) {
     if (originalColor == null) {
       return null;
     }

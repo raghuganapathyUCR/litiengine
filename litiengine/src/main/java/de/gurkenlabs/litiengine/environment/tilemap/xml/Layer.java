@@ -12,49 +12,50 @@ import de.gurkenlabs.litiengine.environment.tilemap.ILayer;
 import de.gurkenlabs.litiengine.environment.tilemap.IMap;
 import de.gurkenlabs.litiengine.environment.tilemap.LayerProperty;
 import de.gurkenlabs.litiengine.graphics.RenderType;
+import javax.annotation.Nullable;
 
 public abstract class Layer extends CustomPropertyProvider implements ILayer {
 
   @XmlAttribute
   private int id;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
 
-  @XmlAttribute(name = "class")
+  @Nullable @XmlAttribute(name = "class")
   private String layerClass;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer width;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Integer height;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Float opacity;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(BooleanIntegerAdapter.class)
   private Boolean visible;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Double offsetx;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Double offsety;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Double parallaxx;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private Double parallaxy;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(ColorAdapter.class)
   private Color tintcolor;
 
-  private transient TmxMap parentMap;
-  private transient RenderType renderType;
+  @Nullable private transient TmxMap parentMap;
+  @Nullable private transient RenderType renderType;
   private transient boolean renderTypeLoaded;
 
   protected Layer() {
@@ -104,7 +105,7 @@ public abstract class Layer extends CustomPropertyProvider implements ILayer {
     return this.id;
   }
 
-  @Override
+  @Nullable @Override
   public String getName() {
     return this.name;
   }
@@ -158,17 +159,17 @@ public abstract class Layer extends CustomPropertyProvider implements ILayer {
     return parallaxy;
   }
 
-  @Override
+  @Nullable @Override
   public Color getTintColor() {
     return tintcolor;
   }
 
   @Override
-  public void setTintColor(Color tintColor) {
+  public void setTintColor(@Nullable Color tintColor) {
     this.tintcolor = tintColor;
   }
 
-  @Override
+  @Nullable @Override
   public RenderType getRenderType() {
     if (this.renderTypeLoaded) {
       return this.renderType;
@@ -219,7 +220,7 @@ public abstract class Layer extends CustomPropertyProvider implements ILayer {
 
   @Override
   @XmlTransient
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
@@ -253,7 +254,7 @@ public abstract class Layer extends CustomPropertyProvider implements ILayer {
     this.visible = visible;
   }
 
-  protected void setMap(TmxMap map) {
+  protected void setMap(@Nullable TmxMap map) {
     this.parentMap = map;
   }
 

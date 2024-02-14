@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import javax.annotation.Nullable;
 
 /**
  * An abstract implementation for all classes that provide a certain type of resources. Basically,
@@ -100,7 +101,7 @@ public abstract class ResourcesContainer<T> {
    * @see #remove(String)
    * @see #tryGet(String)
    */
-  public void add(String resourceName, T resource) {
+  public void add(@Nullable String resourceName, @Nullable T resource) {
     this.resources.put(resourceName, resource);
 
     for (ResourcesContainerListener<? super T> listener : this.listeners) {
@@ -108,7 +109,7 @@ public abstract class ResourcesContainer<T> {
     }
   }
 
-  public void add(URL resourceName, T resource) {
+  public void add(@Nullable URL resourceName, T resource) {
     this.add(resourceName.toString(), resource);
   }
 
@@ -133,7 +134,7 @@ public abstract class ResourcesContainer<T> {
    * @return True if this container contains a resource with the specified name; otherwise false.
    * @see ResourcesContainer#contains(Object)
    */
-  public boolean contains(String resourceName) {
+  public boolean contains(@Nullable String resourceName) {
     return this.resources.containsKey(this.getIdentifier(resourceName));
   }
 
@@ -187,11 +188,11 @@ public abstract class ResourcesContainer<T> {
    * @param resourceName The resource's name.
    * @return The resource with the specified name or null if not found.
    */
-  public T get(String resourceName) {
+  public T get(@Nullable String resourceName) {
     return this.get(this.getIdentifier(resourceName), false);
   }
 
-  public T get(URL resourceName) {
+  public T get(@Nullable URL resourceName) {
     return this.get(resourceName, false);
   }
 
@@ -238,7 +239,7 @@ public abstract class ResourcesContainer<T> {
    *                     resource will be freshly loaded.
    * @return The game resource or null if not found.
    */
-  public T get(String resourceName, boolean forceLoad) {
+  @Nullable public T get(@Nullable String resourceName, boolean forceLoad) {
     if (resourceName == null) {
       return null;
     }
@@ -257,7 +258,7 @@ public abstract class ResourcesContainer<T> {
     }
   }
 
-  public T get(URL resourceName, boolean forceLoad) {
+  public T get(@Nullable URL resourceName, boolean forceLoad) {
     return this.get(resourceName.toString(), forceLoad);
   }
 
@@ -270,7 +271,7 @@ public abstract class ResourcesContainer<T> {
    * @return A {@code Future} object that can be used to retrieve the resource once it is finished
    * loading
    */
-  public Future<T> getAsync(URL location) {
+  public Future<T> getAsync(@Nullable URL location) {
     return ASYNC_POOL.submit(() -> this.get(location));
   }
 
@@ -334,7 +335,7 @@ public abstract class ResourcesContainer<T> {
    * @see #contains(String)
    * @see #get(String)
    */
-  public Optional<T> tryGet(String resourceName) {
+  public Optional<T> tryGet(@Nullable String resourceName) {
     if (this.contains(resourceName)) {
       return Optional.of(this.get(resourceName));
     }
@@ -346,7 +347,7 @@ public abstract class ResourcesContainer<T> {
     return this.tryGet(resourceName.getPath());
   }
 
-  protected abstract T load(URL resourceName) throws Exception;
+  @Nullable protected abstract T load(@Nullable URL resourceName) throws Exception;
 
   /**
    * Gets an alias for the specified resourceName. Note that the process of providing an alias is up
@@ -356,7 +357,7 @@ public abstract class ResourcesContainer<T> {
    * @param resource     The resource.
    * @return An alias for the specified resource.
    */
-  protected String getAlias(String resourceName, T resource) {
+  @Nullable protected String getAlias(String resourceName, @Nullable T resource) {
     return null;
   }
 
@@ -364,7 +365,7 @@ public abstract class ResourcesContainer<T> {
     return this.resources;
   }
 
-  private T loadResource(String identifier) {
+  @Nullable private T loadResource(String identifier) {
     T newResource;
     try {
       newResource = this.load(Resources.getLocation(identifier));
@@ -384,7 +385,7 @@ public abstract class ResourcesContainer<T> {
     return newResource;
   }
 
-  private String getIdentifier(String resourceName) {
+  @Nullable private String getIdentifier(@Nullable String resourceName) {
     return this.aliases.getOrDefault(resourceName, resourceName);
   }
 }

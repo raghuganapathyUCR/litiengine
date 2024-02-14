@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public final class MapUtilities {
 
@@ -152,7 +153,7 @@ public final class MapUtilities {
     return tilesAtLocation;
   }
 
-  public static ITile getTopMostTile(final Point2D location) {
+  @Nullable public static ITile getTopMostTile(final Point2D location) {
     if (Game.world().environment() == null || Game.world().environment().getMap() == null) {
       return null;
     }
@@ -160,7 +161,7 @@ public final class MapUtilities {
     return getTopMostTile(Game.world().environment().getMap(), location);
   }
 
-  public static ITile getTopMostTile(final IMap map, final Point2D location) {
+  @Nullable public static ITile getTopMostTile(final IMap map, final Point2D location) {
     if (map.getTileLayers() == null || map.getTileLayers().isEmpty()) {
       return null;
     }
@@ -168,7 +169,7 @@ public final class MapUtilities {
     return getTopMostTile(map.getOrientation().getTile(location, map));
   }
 
-  public static ITile getTopMostTile(final Point point) {
+  @Nullable public static ITile getTopMostTile(final Point point) {
     if (Game.world().environment() == null || Game.world().environment().getMap() == null) {
       return null;
     }
@@ -176,7 +177,7 @@ public final class MapUtilities {
     return getTopMostTile(Game.world().environment().getMap(), point);
   }
 
-  public static ITile getTopMostTile(final IMap map, final Point point) {
+  @Nullable public static ITile getTopMostTile(final IMap map, final Point point) {
     final Point tileLocation = point;
 
     ITile tile = null;
@@ -199,7 +200,7 @@ public final class MapUtilities {
    * @param tile the tile
    * @return the tileset
    */
-  public static ITileset findTileSet(final IMap map, final ITile tile) {
+  @Nullable public static ITileset findTileSet(final IMap map, final ITile tile) {
     if (map == null || tile == null) {
       return null;
     }
@@ -216,7 +217,7 @@ public final class MapUtilities {
     return match;
   }
 
-  public static Path2D convertPolyshapeToPath(final IMapObject mapObject) {
+  @Nullable public static Path2D convertPolyshapeToPath(final IMapObject mapObject) {
     if (mapObject == null || (!mapObject.isPolygon() && !mapObject.isPolyline())) {
       return null;
     }
@@ -254,7 +255,7 @@ public final class MapUtilities {
     return new ArrayList<>();
   }
 
-  public static IMapObject findMapObject(final IMap map, final int id) {
+  @Nullable public static IMapObject findMapObject(final IMap map, final int id) {
     for (IMapObjectLayer layer : map.getMapObjectLayers()) {
       for (IMapObject obj : layer.getMapObjects()) {
         if (obj.getId() == id) {
@@ -270,7 +271,7 @@ public final class MapUtilities {
     return getTileBoundingBox(getCurrentMap(), mapLocation);
   }
 
-  public static Rectangle2D getTileBoundingBox(final IMap map, final Point2D mapLocation) {
+  public static Rectangle2D getTileBoundingBox(@Nullable final IMap map, final Point2D mapLocation) {
     if (map == null) {
       return new Rectangle2D.Double();
     }
@@ -282,7 +283,7 @@ public final class MapUtilities {
     return getTileBoundingBox(getCurrentMap(), x, y);
   }
 
-  public static Rectangle2D getTileBoundingBox(final IMap map, final int x, final int y) {
+  public static Rectangle2D getTileBoundingBox(@Nullable final IMap map, final int x, final int y) {
     return getTileBoundingBox(map, new Point(x, y));
   }
 
@@ -290,7 +291,7 @@ public final class MapUtilities {
     return getTileBoundingBox(getCurrentMap(), tile);
   }
 
-  public static Rectangle2D getTileBoundingBox(final IMap map, final Point tile) {
+  public static Rectangle2D getTileBoundingBox(@Nullable final IMap map, final Point tile) {
     if (map == null) {
       return new Rectangle2D.Double();
     }
@@ -298,7 +299,7 @@ public final class MapUtilities {
     return map.getOrientation().getBounds(tile, map);
   }
 
-  private static final IMap getCurrentMap() {
+  @Nullable private static final IMap getCurrentMap() {
     if (Game.world().environment() == null) {
       return null;
     }

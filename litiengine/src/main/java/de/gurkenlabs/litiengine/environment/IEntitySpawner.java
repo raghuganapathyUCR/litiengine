@@ -5,6 +5,7 @@ import java.util.List;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
+import javax.annotation.Nullable;
 
 public interface IEntitySpawner<T extends IEntity> extends IUpdateable {
 

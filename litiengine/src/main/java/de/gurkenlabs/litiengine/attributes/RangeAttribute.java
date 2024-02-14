@@ -3,6 +3,7 @@ package de.gurkenlabs.litiengine.attributes;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.annotation.Nullable;
 
 public class RangeAttribute<T extends Number> extends Attribute<T> {
   private final List<AttributeModifier<T>> minModifiers;

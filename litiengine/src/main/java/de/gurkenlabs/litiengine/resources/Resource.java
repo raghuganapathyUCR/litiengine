@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.resources;
 
 import de.gurkenlabs.litiengine.util.AlphanumComparator;
+import javax.annotation.Nullable;
 
 public interface Resource extends Comparable<Resource> {
 
@@ -9,9 +10,9 @@ public interface Resource extends Comparable<Resource> {
    *
    * @return the name
    */
-  String getName();
+  @Nullable String getName();
 
-  void setName(String name);
+  void setName(@Nullable String name);
 
   @Override
   default int compareTo(Resource obj) {

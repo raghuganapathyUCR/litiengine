@@ -4,11 +4,12 @@ import de.gurkenlabs.litiengine.environment.tilemap.MapObjectType;
 import de.gurkenlabs.litiengine.environment.tilemap.TmxType;
 import de.gurkenlabs.litiengine.graphics.RenderType;
 import java.awt.Shape;
+import javax.annotation.Nullable;
 
 @EntityInfo(renderType = RenderType.NONE)
 @TmxType(MapObjectType.AREA)
 public class MapArea extends Entity {
-  Shape shape;
+  @Nullable Shape shape;
 
   /**
    * Instantiates a new {@code MapArea} entity.
@@ -49,7 +50,7 @@ public class MapArea extends Entity {
    */
   public MapArea(
       final int id,
-      final String name,
+      @Nullable final String name,
       final double x,
       final double y,
       final double width,
@@ -60,11 +61,11 @@ public class MapArea extends Entity {
     this.setHeight(height);
   }
 
-  public Shape getShape() {
+  @Nullable public Shape getShape() {
     return shape;
   }
 
-  public void setShape(Shape shape) {
+  public void setShape(@Nullable Shape shape) {
     this.shape = shape;
     setX(shape.getBounds2D().getX());
     setY(shape.getBounds2D().getY());

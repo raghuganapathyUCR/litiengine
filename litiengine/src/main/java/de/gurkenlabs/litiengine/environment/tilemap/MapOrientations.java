@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import javax.annotation.Nullable;
 
 /**
  * A class containing various standard map orientations.
@@ -76,7 +77,7 @@ public class MapOrientations {
    *          The name of the orientation, as stored in the TMX file
    * @return The {@code IMapOrientation} by the given name
    */
-  public static IMapOrientation forName(String name) {
+  public static IMapOrientation forName(@Nullable String name) {
     if ("orthogonal".equals(name)) {
       return ORTHOGONAL;
     } else if ("isometric".equals(name)) {
@@ -106,7 +107,7 @@ public class MapOrientations {
       return this.getShape(x, y, map).getBounds2D();
     }
 
-    @Override
+    @Nullable @Override
     public Rectangle2D getBounds(Point tile, IMap map) {
       return tile == null ? null : this.getBounds(tile.x, tile.y, map);
     }

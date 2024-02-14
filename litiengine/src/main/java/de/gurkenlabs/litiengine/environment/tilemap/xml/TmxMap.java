@@ -37,6 +37,7 @@ import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 @XmlRootElement(name = "map")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -65,13 +66,13 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
       this.rawGroupLayers);
   @XmlAttribute
   private double version;
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String tiledversion;
 
-  @XmlAttribute(name = "class")
+  @Nullable @XmlAttribute(name = "class")
   private String mapClass;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String orientation;
   @XmlTransient
   private IMapOrientation mapOrientation;
@@ -89,33 +90,33 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
   private int infinite;
   @XmlAttribute
   private Integer hexsidelength;
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private StaggerAxis staggeraxis;
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private StaggerIndex staggerindex;
   @XmlAttribute
   private double parallaxoriginx;
   @XmlAttribute
   private double parallaxoriginy;
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(ColorAdapter.class)
   private Color backgroundcolor;
   @XmlAttribute(name = "nextlayerid")
   private Integer nextLayerId;
   @XmlAttribute(name = "nextobjectid")
   private Integer nextObjectId;
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String name;
   @XmlElement(name = "tileset", type = Tileset.class)
   private List<ITileset> tilesets;
-  @XmlElements({
+  @Nullable @XmlElements({
       @XmlElement(name = "imagelayer", type = ImageLayer.class),
       @XmlElement(name = "layer", type = TileLayer.class),
       @XmlElement(name = "objectgroup", type = MapObjectLayer.class),
       @XmlElement(name = "group", type = GroupLayer.class)
   })
   private List<ILayer> layers;
-  @XmlTransient
+  @Nullable @XmlTransient
   private URL path;
   @XmlTransient
   private int chunkOffsetX;
@@ -165,7 +166,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     this.mapOrientation = Objects.requireNonNull(orientation);
   }
 
-  @Override
+  @Nullable @Override
   @XmlTransient
   public URL getPath() {
     return this.path;
@@ -220,7 +221,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     return this.tilesets;
   }
 
-  @Override
+  @Nullable @Override
   public ITilesetEntry getTilesetEntry(int gid) {
     for (ITileset tileset : this.getTilesets()) {
       if (tileset.containsTile(gid)) {
@@ -270,7 +271,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     this.version = version;
   }
 
-  @Override
+  @Nullable @Override
   public String getTiledVersion() {
     return this.tiledversion;
   }
@@ -285,7 +286,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     return this.groupLayers;
   }
 
-  @Override
+  @Nullable @Override
   public String getName() {
     return this.name;
   }
@@ -325,7 +326,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     this.hexsidelength = hexSideLength;
   }
 
-  @Override
+  @Nullable @Override
   public StaggerAxis getStaggerAxis() {
     return this.staggeraxis;
   }
@@ -335,7 +336,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     this.staggeraxis = staggerAxis;
   }
 
-  @Override
+  @Nullable @Override
   public StaggerIndex getStaggerIndex() {
     return this.staggerindex;
   }
@@ -346,7 +347,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
   }
 
   @Override
-  public void finish(URL location) throws TmxException {
+  public void finish(@Nullable URL location) throws TmxException {
     super.finish(location);
     if (this.name == null) {
       this.name = FileUtilities.getFileName(location);
@@ -457,7 +458,7 @@ public final class TmxMap extends CustomPropertyProvider implements IMap {
     return externalTilesets;
   }
 
-  @Override
+  @Nullable @Override
   public Color getBackgroundColor() {
     return this.backgroundcolor;
   }

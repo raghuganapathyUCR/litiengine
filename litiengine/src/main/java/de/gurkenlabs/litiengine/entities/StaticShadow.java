@@ -9,20 +9,21 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import javax.annotation.Nullable;
 
 @EntityInfo(renderType = RenderType.OVERLAY)
 public class StaticShadow extends MapArea {
   public static final Color DEFAULT_COLOR = new Color(0, 0, 0, 75);
   public static final int DEFAULT_OFFSET = 10;
 
-  @TmxProperty(name = MapObjectProperty.SHADOW_TYPE)
+  @Nullable @TmxProperty(name = MapObjectProperty.SHADOW_TYPE)
   private StaticShadowType shadowType;
 
   @TmxProperty(name = MapObjectProperty.SHADOW_OFFSET)
   private int shadowOffset;
 
-  private final CollisionBox origin;
-  private Area area;
+  @Nullable private final CollisionBox origin;
+  @Nullable private Area area;
 
   /**
    * Instantiates a new {@code StaticShadow} entity.
@@ -109,7 +110,7 @@ public class StaticShadow extends MapArea {
    */
   public StaticShadow(
       int id,
-      String name,
+      @Nullable String name,
       double x,
       double y,
       float width,
@@ -140,7 +141,7 @@ public class StaticShadow extends MapArea {
     this.shadowOffset = DEFAULT_OFFSET;
   }
 
-  public StaticShadowType getShadowType() {
+  @Nullable public StaticShadowType getShadowType() {
     return this.shadowType;
   }
 
@@ -179,7 +180,7 @@ public class StaticShadow extends MapArea {
     this.area = null;
   }
 
-  public CollisionBox getOrigin() {
+  @Nullable public CollisionBox getOrigin() {
     return this.origin;
   }
 
@@ -201,7 +202,7 @@ public class StaticShadow extends MapArea {
     return this.getArea().getBounds2D();
   }
 
-  public Area getArea() {
+  @Nullable public Area getArea() {
     if (this.getShadowType() == StaticShadowType.NONE) {
       return null;
     }

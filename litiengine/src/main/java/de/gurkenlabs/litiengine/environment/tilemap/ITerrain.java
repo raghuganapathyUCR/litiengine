@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.awt.*;
+import javax.annotation.Nullable;
 
 /**
  * Interface representing a terrain with specific characteristics. Implementations of this interface define methods
@@ -14,14 +15,14 @@ public interface ITerrain {
    *
    * @return A {@code String} representing the name of the terrain.
    */
-  String getName();
+  @Nullable String getName();
 
   /**
    * Gets the color associated with the terrain.
    *
    * @return A {@link Color} object representing the color of the terrain.
    */
-  Color getColor();
+  @Nullable Color getColor();
 
   /**
    * Gets the probability value associated with the terrain.

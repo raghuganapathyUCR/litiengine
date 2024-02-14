@@ -5,6 +5,7 @@ import de.gurkenlabs.litiengine.ILaunchable;
 import de.gurkenlabs.litiengine.IUpdateable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.Nullable;
 
 /**
  * The TweenEngine is the central manager for Tweens. It tracks all current Tween instances and applies their
@@ -53,7 +54,7 @@ public class TweenEngine implements IUpdateable, ILaunchable {
    *          the {@code TweenType} determining which values of the target object will be modified.
    * @return the Tween instance
    */
-  public Tween getTween(final Tweenable target, final TweenType type) {
+  @Nullable public Tween getTween(final Tweenable target, final TweenType type) {
     if (this.getTweens().get(target) == null) {
       this.getTweens().put(target, new ConcurrentHashMap<>());
     }
@@ -80,7 +81,7 @@ public class TweenEngine implements IUpdateable, ILaunchable {
    *          the {@code TweenType} determining which values of the target object will be modified.
    * @return the Tween instance
    */
-  public Tween reset(final Tweenable target, final TweenType type) {
+  @Nullable public Tween reset(final Tweenable target, final TweenType type) {
     final Tween tween = this.getTween(target, type);
     if (tween != null) {
       tween.stop();
@@ -98,7 +99,7 @@ public class TweenEngine implements IUpdateable, ILaunchable {
    *          the {@code TweenType} determining which values of the target object will be modified.
    * @return the Tween instance
    */
-  public Tween resume(final Tweenable target, final TweenType type) {
+  @Nullable public Tween resume(final Tweenable target, final TweenType type) {
     final Tween tween = this.getTween(target, type);
     if (tween != null) {
       tween.resume();
@@ -139,7 +140,7 @@ public class TweenEngine implements IUpdateable, ILaunchable {
    *          the {@code TweenType} determining which values of the target object will be modified.
    * @return the Tween instance
    */
-  public Tween stop(final Tweenable target, final TweenType type) {
+  @Nullable public Tween stop(final Tweenable target, final TweenType type) {
     final Tween tween = this.getTween(target, type);
     if (tween != null) {
       tween.stop();

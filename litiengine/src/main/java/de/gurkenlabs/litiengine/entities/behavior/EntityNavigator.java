@@ -13,6 +13,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
+import javax.annotation.Nullable;
 
 public class EntityNavigator implements IUpdateable, IRenderable {
 
@@ -22,10 +23,10 @@ public class EntityNavigator implements IUpdateable, IRenderable {
   private final List<NavigationListener> listeners;
 
   private final IMobileEntity entity;
-  private final PathFinder pathFinder;
+  @Nullable private final PathFinder pathFinder;
 
   private int currentSegment;
-  private Path path;
+  @Nullable private Path path;
   private float acceptableError;
 
   /**
@@ -36,7 +37,7 @@ public class EntityNavigator implements IUpdateable, IRenderable {
    * @param pathFinder
    *          The pathfinder that is used to navigate the entity
    */
-  public EntityNavigator(final IMobileEntity entity, final PathFinder pathFinder) {
+  public EntityNavigator(final IMobileEntity entity, @Nullable final PathFinder pathFinder) {
     this.cancelNavigationConditions = new CopyOnWriteArrayList<>();
     this.listeners = new CopyOnWriteArrayList<>();
     this.entity = entity;
@@ -73,11 +74,11 @@ public class EntityNavigator implements IUpdateable, IRenderable {
     return entity;
   }
 
-  public Path getPath() {
+  @Nullable public Path getPath() {
     return this.path;
   }
 
-  public PathFinder getPathFinder() {
+  @Nullable public PathFinder getPathFinder() {
     return this.pathFinder;
   }
 

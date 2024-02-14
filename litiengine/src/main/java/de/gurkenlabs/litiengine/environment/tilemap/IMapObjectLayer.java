@@ -3,6 +3,7 @@ package de.gurkenlabs.litiengine.environment.tilemap;
 import java.awt.Color;
 import java.util.Collection;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface IMapObjectLayer extends ILayer {
 
@@ -17,7 +18,7 @@ public interface IMapObjectLayer extends ILayer {
 
   void removeMapObject(IMapObject mapObject);
 
-  Color getColor();
+  @Nullable Color getColor();
 
   void setColor(Color color);
 

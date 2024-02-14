@@ -9,13 +9,14 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 public class SpriteParticle extends Particle {
 
   private AnimationController animation;
   private boolean animateSprite;
   private boolean loopSprite;
-  private BufferedImage currentImage;
+  @Nullable private BufferedImage currentImage;
   private Spritesheet spritesheet;
 
   public SpriteParticle(final Spritesheet spritesheet) {

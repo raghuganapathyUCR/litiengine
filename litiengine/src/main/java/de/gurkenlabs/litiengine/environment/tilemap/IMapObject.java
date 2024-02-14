@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import de.gurkenlabs.litiengine.resources.Resource;
+import javax.annotation.Nullable;
 
 /**
  * This interface represents an instance on a map that can define various things for an engine. e.g. it can be used to
@@ -19,7 +20,7 @@ public interface IMapObject extends ICustomPropertyProvider, Resource {
    */
   public int getGridId();
 
-  public ITilesetEntry getTile();
+  @Nullable public ITilesetEntry getTile();
 
   /**
    * Gets the hit box.
@@ -42,15 +43,15 @@ public interface IMapObject extends ICustomPropertyProvider, Resource {
    */
   public Point2D getLocation();
 
-  public String getType();
+  @Nullable public String getType();
 
-  public IPolyShape getPolyline();
+  @Nullable public IPolyShape getPolyline();
 
   public IPolyShape getPolygon();
 
-  public Ellipse2D getEllipse();
+  @Nullable public Ellipse2D getEllipse();
 
-  public IMapObjectText getText();
+  @Nullable public IMapObjectText getText();
 
   public IMapObjectLayer getLayer();
 

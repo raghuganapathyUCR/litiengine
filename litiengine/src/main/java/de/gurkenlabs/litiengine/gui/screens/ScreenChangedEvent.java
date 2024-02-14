@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.gui.screens;
 
 import java.util.EventObject;
+import javax.annotation.Nullable;
 
 public class ScreenChangedEvent extends EventObject {
   private static final long serialVersionUID = 6145911214616836674L;

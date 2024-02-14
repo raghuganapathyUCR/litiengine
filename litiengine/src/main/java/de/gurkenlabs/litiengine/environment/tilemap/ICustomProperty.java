@@ -2,6 +2,7 @@ package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.awt.Color;
 import java.net.URL;
+import javax.annotation.Nullable;
 
 /**
  * Represents a custom property on a map element.
@@ -33,7 +34,7 @@ public interface ICustomProperty {
 
   boolean getAsBool();
 
-  Color getAsColor();
+  @Nullable Color getAsColor();
 
   float getAsFloat();
 
@@ -47,9 +48,9 @@ public interface ICustomProperty {
 
   long getAsLong();
 
-  <T extends Enum<T>> T getAsEnum(Class<T> enumType);
+  @Nullable <T extends Enum<T>> T getAsEnum(Class<T> enumType);
 
-  URL getAsFile();
+  @Nullable URL getAsFile();
 
   int getMapObjectId();
 

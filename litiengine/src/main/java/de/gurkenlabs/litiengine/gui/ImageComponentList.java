@@ -4,10 +4,11 @@ import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import java.awt.Image;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.annotation.Nullable;
 
 public class ImageComponentList extends GuiComponent {
 
-  private final Spritesheet background;
+  @Nullable private final Spritesheet background;
   private final List<ImageComponent> cells;
   private List<Image> images;
   private double rowHeight;
@@ -25,8 +26,8 @@ public class ImageComponentList extends GuiComponent {
       final double height,
       final int rows,
       final int columns,
-      final List<Image> images,
-      final Spritesheet background) {
+      @Nullable final List<Image> images,
+      @Nullable final Spritesheet background) {
     super(x, y, width, height);
     if (images != null) {
       this.images = images;
@@ -56,7 +57,7 @@ public class ImageComponentList extends GuiComponent {
     }
   }
 
-  public Spritesheet getBackground() {
+  @Nullable public Spritesheet getBackground() {
     return this.background;
   }
 
@@ -140,9 +141,9 @@ public class ImageComponentList extends GuiComponent {
       final double y,
       final double width,
       final double height,
-      final Spritesheet spritesheet,
+      @Nullable final Spritesheet spritesheet,
       final String text,
-      final Image image) {
+      @Nullable final Image image) {
     return new ImageComponent(x, y, width, height, spritesheet, text, image);
   }
 }

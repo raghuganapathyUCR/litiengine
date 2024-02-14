@@ -4,8 +4,13 @@ plugins {
   id "encoding-defaults"
   id "publishing-defaults"
   id "testing-defaults"
+  id "net.ltgt.errorprone" version "3.1.0"
+  id "edu.ucr.cs.riple.annotator.plugin" version "0.0.1"
 }
-
+repositories {
+  gradlePluginPortal()
+  mavenLocal()
+}
 dependencies {
   implementation libs.jinput
   implementation libs.bundles.soundlibs
@@ -13,4 +18,30 @@ dependencies {
   api libs.xml.api
   runtimeOnly libs.bundles.xml.runtime
   testImplementation project(":shared")
+
+  annotationProcessor "com.uber.nullaway:nullaway:0.10.22"
+
+  compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+
+  errorprone "com.google.errorprone:error_prone_core:2.24.1"
+  errorproneJavac "com.google.errorprone:javac:9+181-r4173-1"
+}
+
+
+import net.ltgt.gradle.errorprone.CheckSeverity
+tasks.withType(JavaCompile) {
+  // remove the if condition if you want to run NullAway on test code
+  if (!name.toLowerCase().contains("test")) {
+    options.errorprone {
+      check("NullAway", CheckSeverity.ERROR)
+      option("NullAway:AnnotatedPackages", "de.gurkenlabs.litiengine")
+    }
+    options.compilerArgs << "-Xmaxerrs"<< "100000"
+    options.compilerArgs << "-Xmaxwarns" << "100000"
+  }
+
+}
+
+tasks.named("runAnnotator", RunAnnotator).configure {
+  extraOptions = ['-rboserr']
 }

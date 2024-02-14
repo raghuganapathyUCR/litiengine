@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
+import javax.annotation.Nullable;
 
 /** This implementation provides information about the mouse input in the LITIENGINE. */
 public final class Mouse
@@ -53,7 +54,7 @@ public final class Mouse
   private Point2D lastLocation;
   private Point2D location;
 
-  private MouseEvent updateLocation;
+  @Nullable private MouseEvent updateLocation;
   private boolean updatingLocation;
 
   /**

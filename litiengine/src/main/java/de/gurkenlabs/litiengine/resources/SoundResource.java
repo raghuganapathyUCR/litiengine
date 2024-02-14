@@ -10,10 +10,11 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 import de.gurkenlabs.litiengine.sound.Sound;
 import de.gurkenlabs.litiengine.util.io.Codec;
+import javax.annotation.Nullable;
 
 @XmlRootElement(name = "sound")
 public class SoundResource extends NamedResource {
-  @XmlElement(name = "data")
+  @Nullable @XmlElement(name = "data")
   private String data;
 
   @XmlElement(name = "format")
@@ -33,7 +34,7 @@ public class SoundResource extends NamedResource {
     this(new Sound(data, name), format);
   }
 
-  @XmlTransient
+  @Nullable @XmlTransient
   public String getData() {
     return this.data;
   }

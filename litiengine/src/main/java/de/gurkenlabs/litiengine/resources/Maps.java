@@ -28,6 +28,7 @@ import de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap;
 import de.gurkenlabs.litiengine.graphics.RenderType;
 import de.gurkenlabs.litiengine.util.io.FileUtilities;
 import de.gurkenlabs.litiengine.util.io.XmlUtilities;
+import javax.annotation.Nullable;
 
 public final class Maps extends ResourcesContainer<IMap> {
   private static final Logger log = Logger.getLogger(Maps.class.getName());
@@ -102,8 +103,8 @@ public final class Maps extends ResourcesContainer<IMap> {
     return new MapGenerator(map);
   }
 
-  @Override
-  protected IMap load(URL resourceName) throws IOException, URISyntaxException {
+  @Nullable @Override
+  protected IMap load(@Nullable URL resourceName) throws IOException, URISyntaxException {
     TmxMap map;
     try {
       map = XmlUtilities.read(TmxMap.class, resourceName);
@@ -118,8 +119,8 @@ public final class Maps extends ResourcesContainer<IMap> {
     return map;
   }
 
-  @Override
-  protected String getAlias(String resourceName, IMap resource) {
+  @Nullable @Override
+  protected String getAlias(String resourceName, @Nullable IMap resource) {
     if (resource == null || resource.getName() == null || resource.getName().isEmpty() || resource.getName().equalsIgnoreCase(resourceName)) {
       return null;
     }
@@ -174,7 +175,7 @@ public final class Maps extends ResourcesContainer<IMap> {
      *          The callback that defines which tile gid will be assigned at the specified x, y grid coordinates.
      * @return The newly added tile layer.
      */
-    public ITileLayer addTileLayer(RenderType renderType, IntBinaryOperator tileCallback) {
+    @Nullable public ITileLayer addTileLayer(RenderType renderType, IntBinaryOperator tileCallback) {
       List<Tile> tiles = new ArrayList<>();
       for (int y = 0; y < this.map.getHeight(); y++) {
         for (int x = 0; x < this.map.getWidth(); x++) {
@@ -262,7 +263,7 @@ public final class Maps extends ResourcesContainer<IMap> {
      *          The mapObject to be added to the specified {@code MapObjectLayer}.
      * @return The added map object.
      */
-    public IMapObject add(IMapObjectLayer layer, IMapObject mapObject) {
+    public IMapObject add(@Nullable IMapObjectLayer layer, IMapObject mapObject) {
       layer.addMapObject(mapObject);
       return mapObject;
     }

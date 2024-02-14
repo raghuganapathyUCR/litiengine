@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import javax.annotation.Nullable;
 
 /**
  * The Interface ICustomPropertyProvider is providing methods to get and set custom properties.
@@ -19,7 +20,7 @@ public interface ICustomPropertyProvider {
    */
   boolean hasCustomProperty(String propertyName);
 
-  ICustomProperty getProperty(String propertyName);
+  @Nullable ICustomProperty getProperty(String propertyName);
 
   void setValue(String propertyName, ICustomProperty value);
 
@@ -46,7 +47,7 @@ public interface ICustomPropertyProvider {
    *          the fallback value in case the property value is null.
    * @return the string value of the custom property, if present. Otherwise, the provided default value is returned.
    */
-  String getStringValue(String propertyName, String defaultValue);
+  String getStringValue(String propertyName, @Nullable String defaultValue);
 
   /**
    * Gets a list of strings stored in a single comma-separated property.
@@ -58,7 +59,7 @@ public interface ICustomPropertyProvider {
    * @return the list of comma-separated strings in the custom property, if present. Otherwise, the provided default value
    *         is returned.
    */
-  List<String> getCommaSeparatedStringValues(String propertyName, String defaultValue);
+  List<String> getCommaSeparatedStringValues(String propertyName, @Nullable String defaultValue);
 
   /**
    * Gets the char value of the custom property with the provided name.
@@ -269,7 +270,7 @@ public interface ICustomPropertyProvider {
    * @throws NoSuchElementException
    *           if the custom property does not exist
    */
-  Color getColorValue(String propertyName);
+  @Nullable Color getColorValue(String propertyName);
 
   /**
    * Gets the color value of the custom property with the provided name. If the value is null, the provided default value
@@ -296,7 +297,7 @@ public interface ICustomPropertyProvider {
    * @throws NoSuchElementException
    *           if the custom property does not exist
    */
-  <T extends Enum<T>> T getEnumValue(String propertyName, Class<T> enumType);
+  @Nullable <T extends Enum<T>> T getEnumValue(String propertyName, Class<T> enumType);
 
   /**
    * Gets the enum value of the custom property with the provided name. If the value is null, the provided default value
@@ -322,7 +323,7 @@ public interface ICustomPropertyProvider {
    *          the name of the custom property
    * @return the file value of the custom property, if present.
    */
-  URL getFileValue(String propertyName);
+  @Nullable URL getFileValue(String propertyName);
 
   /**
    * Gets the file value of the custom property with the provided name. If the value is null or the property is not a
@@ -356,7 +357,7 @@ public interface ICustomPropertyProvider {
    * @param value
    *          the new value
    */
-  void setValue(String propertyName, String value);
+  void setValue(String propertyName, @Nullable String value);
 
   /**
    * Sets the value for the custom property with the given name to the given boolean.
@@ -482,5 +483,5 @@ public interface ICustomPropertyProvider {
    * @param props
    *          the new list of properties
    */
-  void setProperties(Map<String, ICustomProperty> props);
+  void setProperties(@Nullable Map<String, ICustomProperty> props);
 }

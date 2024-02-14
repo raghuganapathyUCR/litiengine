@@ -8,6 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface IAnimationController extends IUpdateable {
 
@@ -76,7 +77,7 @@ public interface IAnimationController extends IUpdateable {
    * @see #getDefault()
    * @see #hasAnimation(String)
    */
-  public Animation get(String animationName);
+  @Nullable public Animation get(String animationName);
 
   /**
    * Gets the currently active {@code Animation} of this controller.
@@ -90,7 +91,7 @@ public interface IAnimationController extends IUpdateable {
    * @see #get(String)
    * @see RenderEngine#renderEntity(java.awt.Graphics2D, de.gurkenlabs.litiengine.entities.IEntity)
    */
-  public Animation getCurrent();
+  @Nullable public Animation getCurrent();
 
   /**
    * Gets the default {@code Animation} of this controller.
@@ -103,7 +104,7 @@ public interface IAnimationController extends IUpdateable {
    * @see #get(String)
    * @see #setDefault(Animation)
    */
-  public Animation getDefault();
+  @Nullable public Animation getDefault();
 
   /**
    * Determines whether this controller has an {@code Animation} with the specified name.
@@ -169,7 +170,7 @@ public interface IAnimationController extends IUpdateable {
    * @see Animation#getCurrentKeyFrame()
    * @see #isEnabled()
    */
-  public BufferedImage getCurrentImage();
+  @Nullable public BufferedImage getCurrentImage();
 
   /**
    * Gets the current sprite scaled by the specified dimensions of the currently active animation of this controller.
@@ -188,7 +189,7 @@ public interface IAnimationController extends IUpdateable {
    * @see Animation#getCurrentKeyFrame()
    * @see #isEnabled()
    */
-  public BufferedImage getCurrentImage(int width, int height);
+  @Nullable public BufferedImage getCurrentImage(int width, int height);
 
   /**
    * Gets the {@code AffineTransform} instance assigned to this controller that can be used to externally transform the
@@ -200,7 +201,7 @@ public interface IAnimationController extends IUpdateable {
    * @see #setAffineTransform(AffineTransform)
    * @see #getCurrentImage()
    */
-  public AffineTransform getAffineTransform();
+  @Nullable public AffineTransform getAffineTransform();
 
   /**
    * Sets the {@code AffineTransform} instance for this controller that can be used to externally transform the current

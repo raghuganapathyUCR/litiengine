@@ -3,20 +3,21 @@ package de.gurkenlabs.litiengine.entities.behavior;
 import de.gurkenlabs.litiengine.IUpdateable;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * A StateMachine manages states and transition to model conditional behaviour.
  */
 public class StateMachine implements IUpdateable {
 
-  private State currentState;
+  @Nullable private State currentState;
 
   /**
    * Get the current state of the StateMachine.
    *
    * @return The current state.
    */
-  public State getCurrentState() {
+  @Nullable public State getCurrentState() {
     return currentState;
   }
 

@@ -1,4 +1,5 @@
 package de.gurkenlabs.litiengine.resources;
+import javax.annotation.Nullable;
 
 /**
  * This listener provides callbacks to observe {@code ResourcesContainer} instances.
@@ -25,7 +26,7 @@ public interface ResourcesContainerListener<T> extends ResourcesContainerCleared
    *          The added resource.
    * @see ResourcesContainer#add(String, Object)
    */
-  default void added(String resourceName, T resource) {}
+  default void added(@Nullable String resourceName, @Nullable T resource) {}
 
   /**
    * This method gets called after the {@code ResourcesContainer.remove} method was executed.

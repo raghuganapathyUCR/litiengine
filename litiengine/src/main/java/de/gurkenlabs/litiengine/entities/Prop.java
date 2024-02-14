@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.environment.tilemap.TmxType;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.PropAnimationController;
 import java.awt.geom.Point2D;
+import javax.annotation.Nullable;
 
 @AnimationInfo(spritePrefix = PropAnimationController.PROP_IDENTIFIER)
 @TmxType(MapObjectType.PROP)

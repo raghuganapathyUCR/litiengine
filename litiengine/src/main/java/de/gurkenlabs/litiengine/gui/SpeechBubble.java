@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
+import javax.annotation.Nullable;
 
 /**
  * A SpeechBubble is a GuiComponent with a given text that is pinned to an entity and moves with it. After initializing
@@ -22,14 +23,14 @@ public class SpeechBubble extends GuiComponent implements IUpdateable {
   private int displayTime = GuiProperties.getDefaultSpeechBubbleDisplayTime();
   private long startedTick;
   private final IEntity entity;
-  private Align boxAlign;
+  @Nullable private Align boxAlign;
   private boolean renderTriangle;
-  private Path2D triangle;
+  @Nullable private Path2D triangle;
   private double triangleSize;
   private double entityCenterX;
   private int typeDelay;
   private int textIndex;
-  private Sound typeSound;
+  @Nullable private Sound typeSound;
   private long lastTypeTick;
   private final String totalText;
 
@@ -290,7 +291,7 @@ public class SpeechBubble extends GuiComponent implements IUpdateable {
    *
    * @return the type sound
    */
-  public Sound getTypeSound() {
+  @Nullable public Sound getTypeSound() {
     return typeSound;
   }
 

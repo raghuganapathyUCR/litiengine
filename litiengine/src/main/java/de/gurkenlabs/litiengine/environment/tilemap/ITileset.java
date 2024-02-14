@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.resources.Resource;
+import javax.annotation.Nullable;
 
 public interface ITileset extends ICustomPropertyProvider, Resource {
 
@@ -20,9 +21,9 @@ public interface ITileset extends ICustomPropertyProvider, Resource {
    *
    * @return the image
    */
-  IMapImage getImage();
+  @Nullable IMapImage getImage();
 
-  Spritesheet getSpritesheet();
+  @Nullable Spritesheet getSpritesheet();
 
   int getMargin();
 
@@ -37,7 +38,7 @@ public interface ITileset extends ICustomPropertyProvider, Resource {
 
   int getColumns();
 
-  ITileOffset getTileOffset();
+  @Nullable ITileOffset getTileOffset();
 
   int getTileHeight();
 
@@ -50,7 +51,7 @@ public interface ITileset extends ICustomPropertyProvider, Resource {
 
   int getTileCount();
 
-  ITilesetEntry getTile(int id);
+  @Nullable ITilesetEntry getTile(int id);
 
   boolean containsTile(ITile tile);
 
@@ -63,5 +64,5 @@ public interface ITileset extends ICustomPropertyProvider, Resource {
    *
    * @return The terrain sets of this instance.
    */
-  List<ITerrainSet> getTerrainSets();
+  @Nullable List<ITerrainSet> getTerrainSets();
 }

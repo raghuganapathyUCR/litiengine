@@ -16,6 +16,7 @@ import de.gurkenlabs.litiengine.environment.tilemap.IMapObject;
 import de.gurkenlabs.litiengine.environment.tilemap.MapObjectProperty;
 import de.gurkenlabs.litiengine.environment.tilemap.MapObjectType;
 import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
+import javax.annotation.Nullable;
 
 public class CreatureMapObjectLoader extends MapObjectLoader {
   private static final Logger log = Logger.getLogger(CreatureMapObjectLoader.class.getName());
@@ -101,7 +102,7 @@ public class CreatureMapObjectLoader extends MapObjectLoader {
     return new Creature(spriteSheet);
   }
 
-  private static Creature createCustomCreature(Class<? extends Creature> customCreature, String spriteSheet) {
+  @Nullable private static Creature createCustomCreature(Class<? extends Creature> customCreature, String spriteSheet) {
     try {
       return customCreature.getConstructor(String.class).newInstance(spriteSheet);
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException

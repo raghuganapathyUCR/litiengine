@@ -1,12 +1,13 @@
 package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 public interface ITilesetEntry extends ICustomPropertyProvider {
 
   int getId();
 
-  ITileAnimation getAnimation();
+  @Nullable ITileAnimation getAnimation();
 
   /**
    * Gets the current image for this tileset entry.
@@ -20,7 +21,7 @@ public interface ITilesetEntry extends ICustomPropertyProvider {
    *
    * @return The standard image for this tileset entry
    */
-  BufferedImage getBasicImage();
+  @Nullable BufferedImage getBasicImage();
 
   /**
    * Gets the tileset that this entry belongs to.
@@ -29,7 +30,7 @@ public interface ITilesetEntry extends ICustomPropertyProvider {
    */
   ITileset getTileset();
 
-  String getType();
+  @Nullable String getType();
 
-  IMapObjectLayer getCollisionInfo();
+  @Nullable IMapObjectLayer getCollisionInfo();
 }

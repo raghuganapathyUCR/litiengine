@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
+import javax.annotation.Nullable;
 
 /**
  * The abstract Class GuiComponent provides all properties and methods needed for screens, built-in,
@@ -41,7 +42,7 @@ import java.util.function.Consumer;
 public abstract class GuiComponent
   implements MouseListener, MouseMotionListener, MouseWheelListener, IRenderable, Tweenable {
 
-  protected static final Font ICON_FONT;
+  @Nullable protected static final Font ICON_FONT;
   private static int id = 0;
 
   static {
@@ -71,16 +72,16 @@ public abstract class GuiComponent
   private final Appearance disabledAppearance;
 
   private boolean enabled;
-  private Font font;
+  @Nullable private Font font;
   private boolean forwardMouseEvents = true;
   private double width;
   private double height;
 
-  private Sound hoverSound;
+  @Nullable private Sound hoverSound;
   private boolean textAntialiasing;
   private boolean textShadow;
 
-  private Color textShadowColor;
+  @Nullable private Color textShadowColor;
   private float textShadowRadius;
 
   private boolean isHovered;
@@ -88,8 +89,8 @@ public abstract class GuiComponent
   private boolean isSelected;
   private String name;
   private boolean suspended;
-  private Object tag;
-  private String text;
+  @Nullable private Object tag;
+  @Nullable private String text;
   private Align textAlign;
   private Valign textValign;
   private boolean automaticLineBreaks;
@@ -99,7 +100,7 @@ public abstract class GuiComponent
   private double textY;
   private boolean visible;
   private Point2D location;
-  private Rectangle2D boundingBox;
+  @Nullable private Rectangle2D boundingBox;
 
   /**
    * Instantiates a new gui component with the dimension (0,0) at the given location.
@@ -258,7 +259,7 @@ public abstract class GuiComponent
    *
    * @return the hover sound
    */
-  public Sound getHoverSound() {
+  @Nullable public Sound getHoverSound() {
     return hoverSound;
   }
 
@@ -285,7 +286,7 @@ public abstract class GuiComponent
    *
    * @return the tag
    */
-  public Object getTag() {
+  @Nullable public Object getTag() {
     return tag;
   }
 
@@ -296,7 +297,7 @@ public abstract class GuiComponent
    *
    * @return the entire text on this GuiComponent
    */
-  public String getText() {
+  @Nullable public String getText() {
     return text;
   }
 
@@ -345,11 +346,11 @@ public abstract class GuiComponent
     return textShadow;
   }
 
-  public Color getTextShadowColor() {
+  @Nullable public Color getTextShadowColor() {
     return textShadowColor;
   }
 
-  public void setTextShadowColor(Color textShadowColor) {
+  public void setTextShadowColor(@Nullable Color textShadowColor) {
     this.textShadowColor = textShadowColor;
   }
 
@@ -959,7 +960,7 @@ public abstract class GuiComponent
    *
    * @param font the new font
    */
-  public void setFont(final Font font) {
+  public void setFont(@Nullable final Font font) {
     this.font = font;
   }
 
@@ -1071,7 +1072,7 @@ public abstract class GuiComponent
    *
    * @param text the new text
    */
-  public void setText(final String text) {
+  public void setText(@Nullable final String text) {
     this.text = text;
     for (final Consumer<String> cons : this.textChangedConsumer) {
       cons.accept(getText());

@@ -9,21 +9,22 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import javax.annotation.Nullable;
 
 public class TextParticle extends Particle {
-  private Font font;
-  private final String text;
+  @Nullable private Font font;
+  @Nullable private final String text;
 
-  public TextParticle(final String text) {
+  public TextParticle(@Nullable final String text) {
     super(1, 1);
     this.text = text;
   }
 
-  public Font getFont() {
+  @Nullable public Font getFont() {
     return this.font;
   }
 
-  public String getText() {
+  @Nullable public String getText() {
     return this.text;
   }
 

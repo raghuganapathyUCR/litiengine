@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.IntConsumer;
+import javax.annotation.Nullable;
 
 /** The Class ListField. */
 public class ListField extends GuiComponent {
@@ -23,12 +24,12 @@ public class ListField extends GuiComponent {
   private final int shownColumns;
   private final int nbOfColumns;
   private boolean arrowKeyNavigation;
-  private Spritesheet buttonSprite;
-  private Spritesheet entrySprite;
+  @Nullable private Spritesheet buttonSprite;
+  @Nullable private Spritesheet entrySprite;
   private int verticalLowerBound = 0;
   private int horizontalLowerBound = 0;
 
-  private ImageComponent selectedComponent;
+  @Nullable private ImageComponent selectedComponent;
 
   private int selectionColumn = -1;
   private int selectionRow = -1;
@@ -36,8 +37,8 @@ public class ListField extends GuiComponent {
   private boolean selectEntireColumn = false;
   private boolean selectEntireRow = false;
 
-  private VerticalSlider verticalSlider;
-  private HorizontalSlider horizontalSlider;
+  @Nullable private VerticalSlider verticalSlider;
+  @Nullable private HorizontalSlider horizontalSlider;
   private boolean sliderInside = false;
 
   /**
@@ -139,11 +140,11 @@ public class ListField extends GuiComponent {
     this.selectedComponent = null;
   }
 
-  public Spritesheet getButtonSprite() {
+  @Nullable public Spritesheet getButtonSprite() {
     return this.buttonSprite;
   }
 
-  public void setButtonSprite(final Spritesheet buttonSprite) {
+  public void setButtonSprite(@Nullable final Spritesheet buttonSprite) {
     this.buttonSprite = buttonSprite;
     initContentList();
   }
@@ -156,11 +157,11 @@ public class ListField extends GuiComponent {
     return this.content;
   }
 
-  public Spritesheet getEntrySprite() {
+  @Nullable public Spritesheet getEntrySprite() {
     return this.entrySprite;
   }
 
-  public void setEntrySprite(final Spritesheet entrySprite) {
+  public void setEntrySprite(@Nullable final Spritesheet entrySprite) {
     this.entrySprite = entrySprite;
     initContentList();
   }
@@ -200,7 +201,7 @@ public class ListField extends GuiComponent {
    *          the row
    * @return ImageComponent at [column,row]
    */
-  public ImageComponent getListEntry(final int column, final int row) {
+  @Nullable public ImageComponent getListEntry(final int column, final int row) {
     if (column < 0
         || row < 0
         || column >= this.listEntries.size()
@@ -233,11 +234,11 @@ public class ListField extends GuiComponent {
     return shownColumns;
   }
 
-  public ImageComponent getSelectedComponent() {
+  @Nullable public ImageComponent getSelectedComponent() {
     return selectedComponent;
   }
 
-  public Object getSelectedObject() {
+  @Nullable public Object getSelectedObject() {
     if (this.getSelectedComponent() == null) {
       return null;
     }

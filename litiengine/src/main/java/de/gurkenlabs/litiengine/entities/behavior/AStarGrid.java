@@ -13,6 +13,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Nullable;
 
 public class AStarGrid implements IRenderable {
   public static final double PENALTY_STATIC_PROP = 5;
@@ -103,7 +104,7 @@ public class AStarGrid implements IRenderable {
     return this.getNode(point.getX(), point.getY());
   }
 
-  public AStarNode getNode(final double x, final double y) {
+  @Nullable public AStarNode getNode(final double x, final double y) {
     int xNode = (int) (x / this.nodeSize);
     int yNode = (int) (y / this.nodeSize);
 
@@ -197,7 +198,7 @@ public class AStarGrid implements IRenderable {
     node.setPenalty(penalty);
   }
 
-  private static void addNode(final List<AStarNode> neighbors, AStarNode node) {
+  private static void addNode(final List<AStarNode> neighbors, @Nullable AStarNode node) {
     if (node != null && node.isWalkable()) {
       neighbors.add(node);
     }
@@ -205,9 +206,9 @@ public class AStarGrid implements IRenderable {
 
   private void addDiagonalNode(
       final List<AStarNode> neighbors,
-      AStarNode node,
-      AStarNode diagonalNeighbor1,
-      AStarNode diagonalNeighbor2) {
+      @Nullable AStarNode node,
+      @Nullable AStarNode diagonalNeighbor1,
+      @Nullable AStarNode diagonalNeighbor2) {
     // only add diagonal neighbors when they are not on a corner
     if (node != null && this.isDiagonalCornerMovementAllowed()
         || node != null
@@ -227,7 +228,7 @@ public class AStarGrid implements IRenderable {
     return MathUtilities.clamp(y, 0, this.getGrid()[0].length - 1);
   }
 
-  private AStarNode getNode(final int x, final int y) {
+  @Nullable private AStarNode getNode(final int x, final int y) {
     if (x >= 0 && x < this.getGrid().length && y >= 0 && y < this.getGrid()[0].length) {
       return this.getGrid()[x][y];
     }

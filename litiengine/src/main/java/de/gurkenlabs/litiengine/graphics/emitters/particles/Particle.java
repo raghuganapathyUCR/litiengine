@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import javax.annotation.Nullable;
 
 public abstract class Particle implements ITimeToLive {
 
@@ -241,7 +242,7 @@ public abstract class Particle implements ITimeToLive {
     return this;
   }
 
-  public Particle setColor(final Color color) {
+  public Particle setColor(@Nullable final Color color) {
     if (color != null) {
       this.color = color;
     }

@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import de.gurkenlabs.litiengine.environment.tilemap.IImageLayer;
 import de.gurkenlabs.litiengine.environment.tilemap.IMapImage;
+import javax.annotation.Nullable;
 
 public class ImageLayer extends Layer implements IImageLayer {
 
@@ -21,7 +22,7 @@ public class ImageLayer extends Layer implements IImageLayer {
   @XmlElement
   private MapImage image;
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   @XmlJavaTypeAdapter(ColorAdapter.class)
   private Color trans;
 
@@ -30,7 +31,7 @@ public class ImageLayer extends Layer implements IImageLayer {
     return this.image;
   }
 
-  @Override
+  @Nullable @Override
   public Color getTransparentColor() {
     return this.trans;
   }
@@ -70,7 +71,7 @@ public class ImageLayer extends Layer implements IImageLayer {
   }
 
   @Override
-  void finish(URL location) throws TmxException {
+  void finish(@Nullable URL location) throws TmxException {
     super.finish(location);
     this.image.finish(location);
   }

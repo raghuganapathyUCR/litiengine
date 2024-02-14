@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import net.java.games.input.Controller;
 import net.java.games.input.Controller.Type;
 import net.java.games.input.ControllerEnvironment;
+import javax.annotation.Nullable;
 
 /**
  * The {@code GamepadManager} provides access to all gamepad input devices.
@@ -151,7 +152,7 @@ public final class GamepadManager extends GamepadEvents implements ILaunchable {
    * @see #get(int)
    * @see #getAll()
    */
-  public Gamepad current() {
+  @Nullable public Gamepad current() {
     return get(0);
   }
 
@@ -164,7 +165,7 @@ public final class GamepadManager extends GamepadEvents implements ILaunchable {
    * @see #getAll()
    * @see #current()
    */
-  public Gamepad get(final int index) {
+  @Nullable public Gamepad get(final int index) {
     if (this.gamePads.isEmpty()) {
       return null;
     }
@@ -182,7 +183,7 @@ public final class GamepadManager extends GamepadEvents implements ILaunchable {
    * @see #getAll()
    * @see #current()
    */
-  public Gamepad getById(final int id) {
+  @Nullable public Gamepad getById(final int id) {
     for (final Gamepad gamepad : this.gamePads) {
       if (gamepad.getId() == id) {
         return gamepad;

@@ -17,6 +17,7 @@ import de.gurkenlabs.litiengine.tweening.TweenType;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.Nullable;
 
 /** TODO: Add idle event */
 @MovementInfo
@@ -34,10 +35,10 @@ public class Creature extends CombatEntity implements IMobileEntity {
   @TmxProperty(name = MapObjectProperty.MOVEMENT_TURNONMOVE)
   private boolean turnOnMove;
 
-  @TmxProperty(name = MapObjectProperty.MOVEMENT_VELOCITY)
+  @Nullable @TmxProperty(name = MapObjectProperty.MOVEMENT_VELOCITY)
   private Attribute<Float> velocity;
 
-  @TmxProperty(name = MapObjectProperty.SPRITESHEETNAME)
+  @Nullable @TmxProperty(name = MapObjectProperty.SPRITESHEETNAME)
   private String spritesheetName;
 
   @TmxProperty(name = MapObjectProperty.SCALE_SPRITE)
@@ -56,7 +57,7 @@ public class Creature extends CombatEntity implements IMobileEntity {
    *          The spritesheet name that identifies the sprites bound to this instance.
    * @see CreatureAnimationController#getSpriteName(Creature, de.gurkenlabs.litiengine.graphics.CreatureAnimationState)
    */
-  public Creature(String spritesheetName) {
+  public Creature(@Nullable String spritesheetName) {
     super();
     final MovementInfo movementInfo = getClass().getAnnotation(MovementInfo.class);
     if (movementInfo != null) {
@@ -132,7 +133,7 @@ public class Creature extends CombatEntity implements IMobileEntity {
    *
    * @return The current spritesheet name of this instance.
    */
-  public String getSpritesheetName() {
+  @Nullable public String getSpritesheetName() {
     return this.spritesheetName;
   }
 

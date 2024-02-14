@@ -4,11 +4,12 @@ import de.gurkenlabs.litiengine.graphics.TextRenderer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import javax.annotation.Nullable;
 
 /** A fonticon is an class that represents a single character of an icon font. */
 public class FontIcon {
   /** The font. */
-  private final Font font;
+  @Nullable private final Font font;
 
   /** The text. */
   private final String text;
@@ -26,7 +27,7 @@ public class FontIcon {
     this.text = String.valueOf(text);
   }
 
-  public FontIcon(final Font font, final String unicode) {
+  public FontIcon(@Nullable final Font font, final String unicode) {
     this.font = font;
     this.text = unicode;
   }

@@ -21,6 +21,7 @@ import java.util.EventListener;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.annotation.Nullable;
 
 @AbilityInfo
 public abstract class Ability implements IRenderable {
@@ -37,7 +38,7 @@ public abstract class Ability implements IRenderable {
   private boolean multiTarget;
   private CastType castType;
 
-  private AbilityExecution currentExecution;
+  @Nullable private AbilityExecution currentExecution;
 
   /**
    * Initializes a new instance of the {@code Ability} class.
@@ -114,7 +115,7 @@ public abstract class Ability implements IRenderable {
    *
    * @return An {@link AbilityExecution} object that wraps all information about this execution of the ability.
    */
-  public AbilityExecution cast() {
+  @Nullable public AbilityExecution cast() {
     if (!canCast()) {
       return null;
     }
@@ -139,7 +140,7 @@ public abstract class Ability implements IRenderable {
     return (float) (getAttributes().cooldown().get() * 0.001);
   }
 
-  public AbilityExecution getCurrentExecution() {
+  @Nullable public AbilityExecution getCurrentExecution() {
     return currentExecution;
   }
 

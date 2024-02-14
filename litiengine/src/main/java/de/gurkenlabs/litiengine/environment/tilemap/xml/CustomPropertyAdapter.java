@@ -20,20 +20,21 @@ import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 import de.gurkenlabs.litiengine.environment.tilemap.ICustomProperty;
 import de.gurkenlabs.litiengine.util.io.URLAdapter;
+import javax.annotation.Nullable;
 
 public class CustomPropertyAdapter extends XmlAdapter<CustomPropertyAdapter.PropertyList, Map<String, ICustomProperty>> {
 
   @XmlAccessorType(XmlAccessType.FIELD)
   static class Property implements Comparable<Property> {
-    @XmlAttribute
+    @Nullable @XmlAttribute
     String name;
-    @XmlAttribute
+    @Nullable @XmlAttribute
     String type;
-    @XmlAttribute
+    @Nullable @XmlAttribute
     String value;
-    @XmlValue
+    @Nullable @XmlValue
     String contents;
-    @XmlTransient
+    @Nullable @XmlTransient
     URL location;
 
     Property() {
@@ -85,7 +86,7 @@ public class CustomPropertyAdapter extends XmlAdapter<CustomPropertyAdapter.Prop
 
   @XmlAccessorType(XmlAccessType.FIELD)
   static class PropertyList {
-    @XmlElement(name = "property")
+    @Nullable @XmlElement(name = "property")
     List<Property> properties;
 
     PropertyList() {
@@ -110,7 +111,7 @@ public class CustomPropertyAdapter extends XmlAdapter<CustomPropertyAdapter.Prop
     return map;
   }
 
-  @Override
+  @Nullable @Override
   public PropertyList marshal(Map<String, ICustomProperty> v) {
     if (v.isEmpty()) {
       return null;

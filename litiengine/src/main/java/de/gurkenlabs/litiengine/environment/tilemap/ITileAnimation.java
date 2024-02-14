@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.util.List;
+import javax.annotation.Nullable;
 
 public interface ITileAnimation {
   public List<ITileAnimationFrame> getFrames();

@@ -3,6 +3,7 @@ package de.gurkenlabs.litiengine.entities;
 import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.physics.IMovementController;
 import java.util.EventListener;
+import javax.annotation.Nullable;
 
 public interface IMobileEntity extends ICollisionEntity {
 

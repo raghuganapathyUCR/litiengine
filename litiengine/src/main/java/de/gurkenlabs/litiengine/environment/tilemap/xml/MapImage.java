@@ -12,11 +12,12 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import de.gurkenlabs.litiengine.environment.tilemap.IMapImage;
+import javax.annotation.Nullable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MapImage extends CustomPropertyProvider implements IMapImage {
 
-  @XmlAttribute
+  @Nullable @XmlAttribute
   private String source;
 
   @XmlAttribute(name = "trans")
@@ -84,7 +85,7 @@ public class MapImage extends CustomPropertyProvider implements IMapImage {
     return this.height;
   }
 
-  @Override
+  @Nullable @Override
   public String getSource() {
     return this.source;
   }
@@ -105,7 +106,7 @@ public class MapImage extends CustomPropertyProvider implements IMapImage {
   }
 
   @Override
-  void finish(URL location) throws TmxException {
+  void finish(@Nullable URL location) throws TmxException {
     super.finish(location);
     try {
       this.absolutePath = new URL(location, this.source);

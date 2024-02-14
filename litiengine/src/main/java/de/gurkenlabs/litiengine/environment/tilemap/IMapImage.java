@@ -3,6 +3,7 @@ package de.gurkenlabs.litiengine.environment.tilemap;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URL;
+import javax.annotation.Nullable;
 
 public interface IMapImage extends ICustomPropertyProvider {
 
@@ -34,7 +35,7 @@ public interface IMapImage extends ICustomPropertyProvider {
    *
    * @return the source
    */
-  String getSource();
+  @Nullable String getSource();
 
   /**
    * Gets the transparent color.

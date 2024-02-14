@@ -1,6 +1,7 @@
 package de.gurkenlabs.litiengine.environment.tilemap;
 
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * A set that contains {@link ITerrain} definitions and allocations to tiles of the related {@link ITileset}.
@@ -11,7 +12,7 @@ public interface ITerrainSet extends ICustomPropertyProvider {
    *
    * @return THe name of the terrain set.
    */
-  String getName();
+  @Nullable String getName();
 
   /**
    * Gets the type of terrain represented by this instance.
@@ -27,14 +28,14 @@ public interface ITerrainSet extends ICustomPropertyProvider {
    * @see TerrainType#EDGE
    * @see TerrainType#MIXED
    */
-  TerrainType getType();
+  @Nullable TerrainType getType();
 
   /**
    * Gets the terrains defined by this terrain set.
    *
    * @return The terrains defined by this instance.
    */
-  List<ITerrain> getTerrains();
+  @Nullable List<ITerrain> getTerrains();
 
   /**
    * Gets the terrains object associated with the specified tile ID.

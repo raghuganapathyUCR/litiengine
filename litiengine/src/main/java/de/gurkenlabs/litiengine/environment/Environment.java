@@ -66,6 +66,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 public final class Environment implements IRenderable {
 
@@ -102,8 +103,8 @@ public final class Environment implements IRenderable {
   private final Collection<MapArea> mapAreas = ConcurrentHashMap.newKeySet();
   private final Collection<Trigger> triggers = ConcurrentHashMap.newKeySet();
 
-  private AmbientLight ambientLight;
-  private StaticShadowLayer staticShadowLayer;
+  @Nullable private AmbientLight ambientLight;
+  @Nullable private StaticShadowLayer staticShadowLayer;
   private boolean loaded;
   private boolean initialized;
   private final IMap map;
@@ -574,7 +575,7 @@ public final class Environment implements IRenderable {
    * @param mapId The map ID of the entity.
    * @return The entity with the specified map ID or null if no entity could be found.
    */
-  public IEntity get(final int mapId) {
+  @Nullable public IEntity get(final int mapId) {
     return this.allEntities.get(mapId);
   }
 
@@ -608,7 +609,7 @@ public final class Environment implements IRenderable {
    * @param mapId The map ID of the entity.
    * @return The strongly typed entity with the specified map ID or null if no entity could be found or if the defined type doesn't match.
    */
-  public <T extends IEntity> T get(Class<T> clss, int mapId) {
+  @Nullable public <T extends IEntity> T get(Class<T> clss, int mapId) {
     IEntity ent = this.get(mapId);
     if (!clss.isInstance(ent)) {
       return null;
@@ -623,7 +624,7 @@ public final class Environment implements IRenderable {
    * @param name The name of the entity.
    * @return The entity with the specified name or null if no entity could be found or if the defined type doesn't match.
    */
-  public IEntity get(final String name) {
+  @Nullable public IEntity get(final String name) {
     if (name == null || name.isEmpty()) {
       return null;
     }
@@ -645,7 +646,7 @@ public final class Environment implements IRenderable {
    * @param name The name of the entity.
    * @return The strongly typed entity with the specified name or null if no entity could be found or if the defined type doesn't match.
    */
-  public <T extends IEntity> T get(Class<T> clss, String name) {
+  @Nullable public <T extends IEntity> T get(Class<T> clss, String name) {
     IEntity ent = this.get(name);
     if (!clss.isInstance(ent)) {
       return null;
@@ -704,7 +705,7 @@ public final class Environment implements IRenderable {
    * @return The ambient light instance of this environment.
    * @see #getStaticShadowLayer()
    */
-  public AmbientLight getAmbientLight() {
+  @Nullable public AmbientLight getAmbientLight() {
     return this.ambientLight;
   }
 
@@ -714,7 +715,7 @@ public final class Environment implements IRenderable {
    * @return The static shadow lighting layer of this environment.
    * @see #getAmbientLight()
    */
-  public StaticShadowLayer getStaticShadowLayer() {
+  @Nullable public StaticShadowLayer getStaticShadowLayer() {
     return this.staticShadowLayer;
   }
 
@@ -775,7 +776,7 @@ public final class Environment implements IRenderable {
    * @see #getArea(String)
    * @see #getAreas()
    */
-  public MapArea getArea(final int mapId) {
+  @Nullable public MapArea getArea(final int mapId) {
     return getById(this.mapAreas, mapId);
   }
 
@@ -787,7 +788,7 @@ public final class Environment implements IRenderable {
    * @see #getArea(int)
    * @see #getAreas()
    */
-  public MapArea getArea(final String name) {
+  @Nullable public MapArea getArea(final String name) {
     return getByName(this.mapAreas, name);
   }
 
@@ -839,7 +840,7 @@ public final class Environment implements IRenderable {
    * @see #getEmitter(String)
    * @see #getEmitters()
    */
-  public Emitter getEmitter(int mapId) {
+  @Nullable public Emitter getEmitter(int mapId) {
     return getById(this.emitters, mapId);
   }
 
@@ -851,7 +852,7 @@ public final class Environment implements IRenderable {
    * @see #getEmitter(int)
    * @see #getEmitters()
    */
-  public Emitter getEmitter(String name) {
+  @Nullable public Emitter getEmitter(String name) {
     return getByName(this.emitters, name);
   }
 
@@ -903,7 +904,7 @@ public final class Environment implements IRenderable {
    * @see #getCollisionBox(String)
    * @see #getCollisionBoxes()
    */
-  public CollisionBox getCollisionBox(int mapId) {
+  @Nullable public CollisionBox getCollisionBox(int mapId) {
     return getById(this.colliders, mapId);
   }
 
@@ -915,7 +916,7 @@ public final class Environment implements IRenderable {
    * @see #getCollisionBox(int)
    * @see #getCollisionBoxes()
    */
-  public CollisionBox getCollisionBox(String name) {
+  @Nullable public CollisionBox getCollisionBox(String name) {
     return getByName(this.colliders, name);
   }
 
@@ -967,7 +968,7 @@ public final class Environment implements IRenderable {
    * @see #getCombatEntity(String)
    * @see #getCombatEntities()
    */
-  public ICombatEntity getCombatEntity(final int mapId) {
+  @Nullable public ICombatEntity getCombatEntity(final int mapId) {
     return getById(this.combatEntities.values(), mapId);
   }
 
@@ -979,7 +980,7 @@ public final class Environment implements IRenderable {
    * @see #getCombatEntity(int)
    * @see #getCombatEntities()
    */
-  public ICombatEntity getCombatEntity(String name) {
+  @Nullable public ICombatEntity getCombatEntity(String name) {
     return getByName(this.combatEntities.values(), name);
   }
 
@@ -1199,7 +1200,7 @@ public final class Environment implements IRenderable {
    * @see #getLightSource(String)
    * @see #getLightSources()
    */
-  public LightSource getLightSource(final int mapId) {
+  @Nullable public LightSource getLightSource(final int mapId) {
     return getById(this.lightSources, mapId);
   }
 
@@ -1211,7 +1212,7 @@ public final class Environment implements IRenderable {
    * @see #getLightSource(int)
    * @see #getLightSources()
    */
-  public LightSource getLightSource(String name) {
+  @Nullable public LightSource getLightSource(String name) {
     return getByName(this.lightSources, name);
   }
 
@@ -1281,7 +1282,7 @@ public final class Environment implements IRenderable {
    * @see #getMobileEntity(String)
    * @see #getMobileEntities()
    */
-  public IMobileEntity getMobileEntity(final int mapId) {
+  @Nullable public IMobileEntity getMobileEntity(final int mapId) {
     return getById(this.mobileEntities.values(), mapId);
   }
 
@@ -1293,7 +1294,7 @@ public final class Environment implements IRenderable {
    * @see #getMobileEntity(int)
    * @see #getMobileEntities()
    */
-  public IMobileEntity getMobileEntity(String name) {
+  @Nullable public IMobileEntity getMobileEntity(String name) {
     return getByName(this.mobileEntities.values(), name);
   }
 
@@ -1371,7 +1372,7 @@ public final class Environment implements IRenderable {
    * @see #getProp(String)
    * @see #getProps()
    */
-  public Prop getProp(int mapId) {
+  @Nullable public Prop getProp(int mapId) {
     return getById(this.props, mapId);
   }
 
@@ -1383,7 +1384,7 @@ public final class Environment implements IRenderable {
    * @see #getProp(int)
    * @see #getProps()
    */
-  public Prop getProp(String name) {
+  @Nullable public Prop getProp(String name) {
     return getByName(this.props, name);
   }
 
@@ -1435,7 +1436,7 @@ public final class Environment implements IRenderable {
    * @see #getCreature(String)
    * @see #getCreatures()
    */
-  public Creature getCreature(int mapId) {
+  @Nullable public Creature getCreature(int mapId) {
     return getById(this.creatures, mapId);
   }
 
@@ -1447,7 +1448,7 @@ public final class Environment implements IRenderable {
    * @see #getCreature(int)
    * @see #getCreatures()
    */
-  public Creature getCreature(String name) {
+  @Nullable public Creature getCreature(String name) {
     return getByName(this.creatures, name);
   }
 
@@ -1499,7 +1500,7 @@ public final class Environment implements IRenderable {
    * @see #getSpawnpoint(String)
    * @see #getSpawnpoints()
    */
-  public Spawnpoint getSpawnpoint(final int mapId) {
+  @Nullable public Spawnpoint getSpawnpoint(final int mapId) {
     return getById(this.spawnPoints, mapId);
   }
 
@@ -1511,7 +1512,7 @@ public final class Environment implements IRenderable {
    * @see #getSpawnpoint(int)
    * @see #getSpawnpoints()
    */
-  public Spawnpoint getSpawnpoint(final String name) {
+  @Nullable public Spawnpoint getSpawnpoint(final String name) {
     return getByName(this.spawnPoints, name);
   }
 
@@ -1563,7 +1564,7 @@ public final class Environment implements IRenderable {
    * @see #getSpawnpoint(String)
    * @see #getSpawnpoints()
    */
-  public SoundSource getSoundSource(final int mapId) {
+  @Nullable public SoundSource getSoundSource(final int mapId) {
     return getById(this.soundSources, mapId);
   }
 
@@ -1575,7 +1576,7 @@ public final class Environment implements IRenderable {
    * @see #getSpawnpoint(int)
    * @see #getSpawnpoints()
    */
-  public SoundSource getSoundSource(final String name) {
+  @Nullable public SoundSource getSoundSource(final String name) {
     return getByName(this.soundSources, name);
   }
 
@@ -1627,7 +1628,7 @@ public final class Environment implements IRenderable {
    * @see #getStaticShadow(String)
    * @see #getStaticShadows()
    */
-  public StaticShadow getStaticShadow(int mapId) {
+  @Nullable public StaticShadow getStaticShadow(int mapId) {
     return getById(this.staticShadows, mapId);
   }
 
@@ -1639,7 +1640,7 @@ public final class Environment implements IRenderable {
    * @see #getStaticShadow(int)
    * @see #getStaticShadows()
    */
-  public StaticShadow getStaticShadow(String name) {
+  @Nullable public StaticShadow getStaticShadow(String name) {
     return getByName(this.staticShadows, name);
   }
 
@@ -1691,7 +1692,7 @@ public final class Environment implements IRenderable {
    * @see #getTrigger(String)
    * @see #getTriggers()
    */
-  public Trigger getTrigger(final int mapId) {
+  @Nullable public Trigger getTrigger(final int mapId) {
     return getById(this.triggers, mapId);
   }
 
@@ -1703,7 +1704,7 @@ public final class Environment implements IRenderable {
    * @see #getTrigger(int)
    * @see #getTriggers()
    */
-  public Trigger getTrigger(final String name) {
+  @Nullable public Trigger getTrigger(final String name) {
     return getByName(this.triggers, name);
   }
 
@@ -1871,7 +1872,7 @@ public final class Environment implements IRenderable {
    * @param source The entity that attempts to interacts with triggers.
    * @return The trigger that the source entity was able to interact with or null.
    */
-  public Trigger interact(ICollisionEntity source) {
+  @Nullable public Trigger interact(ICollisionEntity source) {
     return this.interact(source, null);
   }
 
@@ -1883,7 +1884,7 @@ public final class Environment implements IRenderable {
    * @return The trigger that the entity was able to interact with or null.
    * @see Trigger#canTrigger(ICollisionEntity)
    */
-  public Trigger interact(ICollisionEntity source, Predicate<Trigger> condition) {
+  @Nullable public Trigger interact(ICollisionEntity source, @Nullable Predicate<Trigger> condition) {
     for (final Trigger trigger : this.triggers) {
       if (trigger.canTrigger(source) && (condition == null || condition.test(trigger))) {
         boolean result = trigger.interact(source);
@@ -2183,7 +2184,7 @@ public final class Environment implements IRenderable {
     return this.rendering;
   }
 
-  private static <T extends IEntity> T getById(Collection<T> entities, int mapId) {
+  @Nullable private static <T extends IEntity> T getById(Collection<T> entities, int mapId) {
     for (final T m : entities) {
       if (m.getMapId() == mapId) {
         return m;
@@ -2193,7 +2194,7 @@ public final class Environment implements IRenderable {
     return null;
   }
 
-  private static <T extends IEntity> T getByName(Collection<T> entities, String name) {
+  @Nullable private static <T extends IEntity> T getByName(Collection<T> entities, String name) {
     if (name == null || name.isEmpty()) {
       return null;
     }
@@ -2482,7 +2483,7 @@ public final class Environment implements IRenderable {
     this.emitters.remove(emitter);
   }
 
-  public void assignRenderType(IEntity entity, RenderType renderType) {
+  public void assignRenderType(IEntity entity, @Nullable RenderType renderType) {
     miscEntities.get(entity.getRenderType()).remove(entity.getMapId());
     miscEntities.get(renderType).put(entity.getMapId(), entity);
   }

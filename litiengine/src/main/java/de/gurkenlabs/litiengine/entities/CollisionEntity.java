@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 @CollisionInfo(collision = true)
 public abstract class CollisionEntity extends Entity implements ICollisionEntity {
@@ -44,7 +45,7 @@ public abstract class CollisionEntity extends Entity implements ICollisionEntity
   @TmxProperty(name = MapObjectProperty.COLLISION_TYPE)
   private Collision collisionType;
 
-  private Rectangle2D collisionBox;
+  @Nullable private Rectangle2D collisionBox;
 
   protected CollisionEntity() {
     super();

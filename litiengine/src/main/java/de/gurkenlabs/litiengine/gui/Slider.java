@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
+import javax.annotation.Nullable;
 
 public abstract class Slider extends GuiComponent {
 
@@ -14,8 +15,8 @@ public abstract class Slider extends GuiComponent {
   private ImageComponent button1;
   private ImageComponent button2;
   private ImageComponent sliderComponent;
-  private Spritesheet buttonSprite;
-  private Spritesheet sliderSprite;
+  @Nullable private Spritesheet buttonSprite;
+  @Nullable private Spritesheet sliderSprite;
   private float currentValue;
   private boolean isDragging;
 
@@ -86,7 +87,7 @@ public abstract class Slider extends GuiComponent {
     getComponents().add(getButton2());
   }
 
-  public Spritesheet getButtonSpritesheet() {
+  @Nullable public Spritesheet getButtonSpritesheet() {
     return buttonSprite;
   }
 
@@ -167,7 +168,7 @@ public abstract class Slider extends GuiComponent {
 
   protected abstract void renderTicks(Graphics2D g);
 
-  public Spritesheet getSliderSpritesheet() {
+  @Nullable public Spritesheet getSliderSpritesheet() {
     return sliderSprite;
   }
 

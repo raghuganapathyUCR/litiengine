@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Nullable;
 
 public final class CustomMapObjectLoader extends MapObjectLoader {
   private static final Logger log = Logger.getLogger(CustomMapObjectLoader.class.getName());
@@ -23,7 +24,7 @@ public final class CustomMapObjectLoader extends MapObjectLoader {
     this.invoke = invocation;
   }
 
-  static ConstructorInvocation findConstructor(Class<? extends IEntity> entityType) {
+  @Nullable static ConstructorInvocation findConstructor(Class<? extends IEntity> entityType) {
     ConstructorInvocation inv = null;
 
     int priority = 0; // env+mo, mo+env, mo, env, nullary
